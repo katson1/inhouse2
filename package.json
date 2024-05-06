@@ -1,0 +1,19 @@
+{
+  "name": "inhouse2",
+  "version": "1.0.0",
+  "description": "An in-house bot that drafts 2 teams and has an MMR system for custom games. For mutiple games.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./deploy-commands.js && node ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.15.1",
+    "dotenv": "^16.4.5",
+    "sqlite3": "^5.1.7"
+  }
+}
