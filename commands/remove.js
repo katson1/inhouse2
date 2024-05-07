@@ -9,7 +9,7 @@ const playersql = new Player('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()
-    .setName("pick")
+    .setName("remove")
     .setDescription("Add a player!")
     .addUserOption(option =>
         option.setName('player')

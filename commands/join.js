@@ -1,11 +1,14 @@
 import { SlashCommandBuilder } from 'discord.js';
 import Player from '../model/playermodel.js';
 import { getEmbed } from '../utils/embed.js';
-import { createTablePlayer } from '../database/db.js';
+import { createMatchController, createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
 
 const playersql = new Player('mydb.sqlite');
 
 createTablePlayer();
+createTableTeam1();
+createTableTeam2();
+createMatchController();
 
 export default {
     data: new SlashCommandBuilder()
@@ -29,7 +32,7 @@ export default {
         let userUsername = userToAdd.user.username;
         embed.title = `${userUsername} joinned inhouse: ${option}`;
         const findUser = await playersql.getPlayerByusername(userUsername);
-        if (findUser) {
+        if (findUser.lenght > 0) {
             embed.title = `${userUsername} is joinned: \`MMR ${findUser[0].mmr}\``;
         } else {
             switch (option) {
