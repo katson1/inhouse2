@@ -45,7 +45,7 @@ export default {
         const pickInprogress = await team1.getTeam1();
 
         if(pickInprogress.length > 1){
-            exampleEmbed.title = 'One has already picked a player, use \`/clear\`';
+            exampleEmbed.title = 'One team has already picked a player, use \`/clear\`';
             await interaction.reply({ embeds: [exampleEmbed] });
             return;
         }
