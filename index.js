@@ -12,7 +12,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const commandsPath = path.join(__dirname, "commands");
 const commandsFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildVoiceStates
+    ]
+});
+
 client.commands = new Collection();
 
 for(const file of commandsFiles){
@@ -45,5 +51,18 @@ client.on(Events.InteractionCreate, async interaction => {
     } catch (error) {
         console.log(error);
         await interaction.reply("There was an error executing this command!");
+    }
+});
+
+global.channelMembers = new Map();
+
+client.on('voiceStateUpdate', (oldState, newState) => {
+    console.log("teste");
+    const channelName = "lobby";
+    if (oldState.channel && oldState.channel.name === channelName && (!newState.channel || newState.channel.name !== channelName)) {
+        channelMembers.set(oldState.channel.id, oldState.channel.members.map(member => member.user.username));
+    }
+    if (newState.channel && newState.channel.name === channelName) {
+        channelMembers.set(newState.channel.id, newState.channel.members.map(member => member.user.username));
     }
 });

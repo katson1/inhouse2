@@ -18,60 +18,60 @@ export default {
     async execute(interaction) {
         const guild = interaction.guild;
         const channelName = "lobby";
-        var channel = null;
-        for (const [chave, canal] of guild.channels.cache.entries()) {
-            if (canal.type === 2 && canal.name === channelName) {
-                channel = (canal);
-            }
-        }
+        const channel = guild.channels.cache.find(channel => channel.name === channelName);
 
         if (!channel) {
-            await interaction.reply("Canal lobby não encontrado!");
+            await interaction.reply({ content: "Canal 'lobby' não encontrado!", ephemeral: true });
             return;
         }
 
-        const members = Array.from(channel.members.values()).map(member => member.user.username);
+        console.log(global.channelMembers);
+        // Obtém os membros do canal 'lobby' do mapa
+        const members = global.channelMembers.get(channel.id) || [];
+        console.log(members);
+
+        if (members.length < 2) {
+            await interaction.reply({ content: "Não há jogadores suficientes no canal 'lobby'.", ephemeral: true });
+            return;
+        }
+
         const caps = sortCaps(members);
-        const exampleEmbed = getEmbed();
-        var fp = null;
-        var other = null;
         let cap1 = await playersql.getPlayerByusername(caps[0]);
         let cap2 = await playersql.getPlayerByusername(caps[1]);
-        if (members.length < 1) {
-            exampleEmbed.title = 'There is no sufficient player on the lobby channel!';
-            await interaction.reply({ embeds: [exampleEmbed] });
-            return;
-        }
-        const pickInprogress = await team1.getTeam1();
 
-        if(pickInprogress.length > 1){
-            exampleEmbed.title = 'One team has already picked a player, use \`/clear\`';
+        const pickInprogress = await team1.getTeam1();
+        if (pickInprogress.length > 0) {
+            const exampleEmbed = getEmbed();
+            exampleEmbed.title = 'One team has already picked a player, use `/clear`';
             await interaction.reply({ embeds: [exampleEmbed] });
             return;
         }
+
         await team1.clearTeam1();
         await team2.clearTeam2();
+
+        let fp, other;
         if (cap1[0].mmr > cap2[0].mmr) {
             fp = cap2;
             other = cap1;
-            await team1.insertPlayerOnTeam1(cap2[0].username);
-            await team2.insertPlayerOnTeam2(cap1[0].username);
         } else {
             fp = cap1;
             other = cap2;
-            await team1.insertPlayerOnTeam1(cap1[0].username);
-            await team2.insertPlayerOnTeam2(cap2[0].username);
         }
+        await team1.insertPlayerOnTeam1(fp[0].username);
+        await team2.insertPlayerOnTeam2(other[0].username);
+
+        const exampleEmbed = getEmbed();
         exampleEmbed.title = 'Captains for next lobby:';
         exampleEmbed.fields.push(
             {
                 name: '',
-                value: `**${fp[0].username}** (first pick)` || "Nenhum usuário no canal",
+                value: `**${fp[0].username}** (first pick)` || "No user in the channel",
                 inline: false,
             },
             {
                 name: '',
-                value: `**${other[0].username}**` || "Nenhum usuário no canal",
+                value: `**${other[0].username}**` || "No user in the channel",
                 inline: false,
             }
         );
@@ -81,7 +81,5 @@ export default {
 };
 
 function sortCaps(array) {
-    let sorted = array.sort(() => 0.5 - Math.random());
-
-    return sorted.slice(0, 2);
+    return array.sort(() => 0.5 - Math.random()).slice(0, 2);
 }
