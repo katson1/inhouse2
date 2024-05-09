@@ -6,6 +6,8 @@ import Team2 from '../model/team2model.js';
 import MatchController from '../model/matchcontroller.js';
 
 const playersql = new Player('mydb.sqlite');
+const team1 = new Team1('mydb.sqlite');
+const team2 = new Team2('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()
@@ -38,6 +40,12 @@ export default {
         const exampleEmbed = getEmbed();
 
         const members = Array.from(channel.members.values()).map(member => member.user.username);
+
+        const teamOne = await team1.getTeam1();
+        const teamTwo = await team2.getTeam2();
+
+        console.log(teamOne, teamTwo);
+
         if (members.includes(player)) {
             exampleEmbed.title = `${user} picked: ${player}`;
         } else {

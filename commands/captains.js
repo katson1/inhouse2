@@ -21,17 +21,13 @@ export default {
         const channel = guild.channels.cache.find(channel => channel.name === channelName);
 
         if (!channel) {
-            await interaction.reply({ content: "Canal 'lobby' não encontrado!", ephemeral: true });
+            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome 'lobby'!", ephemeral: true });
             return;
         }
 
-        console.log(global.channelMembers);
-        // Obtém os membros do canal 'lobby' do mapa
-        const members = global.channelMembers.get(channel.id) || [];
-        console.log(members);
-
+        const members = Array.from(channel.members.values()).map(member => member.user.username);
         if (members.length < 2) {
-            await interaction.reply({ content: "Não há jogadores suficientes no canal 'lobby'.", ephemeral: true });
+            await interaction.reply({ content: "Não há jogadores suficientes no canal do Lobby." });
             return;
         }
 
@@ -40,7 +36,7 @@ export default {
         let cap2 = await playersql.getPlayerByusername(caps[1]);
 
         const pickInprogress = await team1.getTeam1();
-        if (pickInprogress.length > 0) {
+        if (pickInprogress.length > 1) {
             const exampleEmbed = getEmbed();
             exampleEmbed.title = 'One team has already picked a player, use `/clear`';
             await interaction.reply({ embeds: [exampleEmbed] });

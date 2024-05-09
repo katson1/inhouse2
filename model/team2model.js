@@ -6,7 +6,7 @@ class Team2 {
   }
 
   async getTeam2() {
-    const rows = await this.query('SELECT * FROM team1');
+    const rows = await this.query('SELECT * FROM team2');
     return rows;
   }
 
