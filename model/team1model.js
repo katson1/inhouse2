@@ -6,8 +6,13 @@ class Team1 {
   }
 
   async getTeam1() {
-    const rows = await this.query('SELECT * FROM team1');
+    const rows = await this.query('SELECT rowid, * FROM team1');
     return rows;
+  }
+
+  async getTeam1Cap() {
+    const rows = await this.query('SELECT rowid, * FROM team1 where rowid = 1');
+    return rows[0];
   }
 
   async insertPlayerOnTeam1(username) {

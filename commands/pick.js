@@ -11,14 +11,14 @@ const team2 = new Team2('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()
-    .setName("pick")
-    .setDescription("Add a player!")
-    .addUserOption(option =>
-        option.setName('player')
-            .setDescription('Add the player!')
-            .setRequired(true)),
+        .setName("pick")
+        .setDescription("Add a player!")
+        .addUserOption(option =>
+            option.setName('player')
+                .setDescription('Add the player!')
+                .setRequired(true)),
 
-        async execute(interaction) {
+    async execute(interaction) {
         const guild = interaction.guild;
         const channelName = "lobby";
         var channel = null;
@@ -44,10 +44,37 @@ export default {
         const teamOne = await team1.getTeam1();
         const teamTwo = await team2.getTeam2();
 
-        console.log(teamOne, teamTwo);
+        const playerAlreadyPickedTeam1 = teamOne.some(jogador => jogador.player === player);
+        const playerAlreadyPickedTeam2 = teamTwo.some(jogador => jogador.player === player);
+
+        const team1Cap = await team1.getTeam1Cap();
+        const team2Cap = await team2.getTeam2Cap();
+
+        if(user == team1Cap.player || user == team2Cap.player){
+            await interaction.reply(`You are not a captain!`);
+            return;
+        }
 
         if (members.includes(player)) {
-            exampleEmbed.title = `${user} picked: ${player}`;
+            if (playerAlreadyPickedTeam1 || playerAlreadyPickedTeam2) {
+                await interaction.reply(`${player} has already been picked`);
+                return;
+            } else {
+                if (teamOne.lenght > teamTwo.lenght) {
+                    if (user == team1Cap.player) {
+                        await interaction.reply(`Isnt your time to pick`);
+                        return;
+                    }
+                    team2.insertPlayerOnTeam2(player);
+                } else if (teamOne.lenght == teamTwo.lenght) {
+                    if (user == team2Cap.player) {
+                        await interaction.reply(`Isnt your time to pick`);
+                        return;
+                    }
+                    team1.insertPlayerOnTeam1(player)
+                }
+                exampleEmbed.title = `${user} picked: ${player}`;
+            }
         } else {
             exampleEmbed.title = `${player} isnt on the lobby channel`;
         }
