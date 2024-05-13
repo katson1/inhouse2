@@ -19,7 +19,7 @@ export default {
                             \`Diamond\`: 1900 MMR
                             \`Master\`: 2075 MMR
                             \`Pro\`: 2150 MMR
-                            Note: To be cosider a \`pro\` you must have won at least two importants tournaments`,
+                            Note: To be considered a \`pro\` you must have won at least one major tournament, or have participated in more than 4.`,
                 inline: false,
             },
             {

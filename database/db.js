@@ -14,7 +14,9 @@ export function createTablePlayer() {
         mmr int NOT NULL,
         win int,
         lose int,
-        games int
+        games int,
+        primary_role string NOT NULL,
+        secondary_role string
     )`, [], err => {
         if(err) {
             console.error(err.message);

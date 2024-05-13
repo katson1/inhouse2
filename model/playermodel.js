@@ -40,8 +40,8 @@ class Player {
     return rows;
   }
 
-  async createPlayer(username, mmr) {
-    const result = await this.run('INSERT INTO player (username, mmr, win, lose, games) VALUES (?,?,0,0,0)', [username, mmr]);
+  async createPlayer(username, mmr, role, role2) {
+    const result = await this.run('INSERT INTO player (username, mmr, win, lose, games, primary_role, secondary_role) VALUES (?,?,0,0,0,?,?)', [username, mmr, role, role2]);
     return result.lastID;
   }
 

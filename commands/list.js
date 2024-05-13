@@ -3,9 +3,11 @@ import { getEmbed } from "../utils/embed.js";
 import Player from '../model/playermodel.js';
 import Team1 from '../model/team1model.js';
 import Team2 from '../model/team2model.js';
+import emojis from '../utils/emojis.js';
 
 const team1 = new Team1('mydb.sqlite');
 const team2 = new Team2('mydb.sqlite');
+const playerModel = new Player('mydb.sqlite');
 const teamOne = await team1.getTeam1();
 const teamTwo = await team2.getTeam2();
 
@@ -29,19 +31,27 @@ export default {
             return;
         }
         
+        const exampleEmbed = getEmbed();
+        exampleEmbed.title = 'Player List';
+        exampleEmbed.description = `Pick players by using \`/pick\` `;
+
         const members = Array.from(channel.members.values()).map(member => member.user.username);
         const players = [...teamOne, ...teamTwo].map(team => team.player);
         const filteredMembers = members.filter(member => !players.includes(member));
 
-        const exampleEmbed = getEmbed();
-        exampleEmbed.title = 'Usuários no canal lobby:';
-        exampleEmbed.fields.push(
-            {
-                name: "Usuários",
-                value: filteredMembers.join(', ') || "Nenhum usuário no canal",
-                inline: false,
+        for (const playerFromLobby of filteredMembers) {
+            const findUser = await playerModel.getPlayerByusername(playerFromLobby);
+            if (findUser.length > 0) {
+                const primaryEmoji = emojis[findUser[0].primary_role];
+                const secondaryEmoji = findUser[0].second_role ? emojis[findUser[0].second_role] : '';
+                
+                exampleEmbed.fields.push({
+                    name: `\`${findUser[0].mmr}\`${primaryEmoji} ${secondaryEmoji}${playerFromLobby}`,
+                    value: ``,
+                    inline: false
+                });
             }
-        );
+        }
 
         await interaction.reply({ embeds: [exampleEmbed] });
     }
