@@ -66,6 +66,12 @@ export default {
                         return;
                     }
                     team2.insertPlayerOnTeam2(player);
+
+                    updatedTeam2 = await team2.getTeam2();
+                    if (updatedTeam2.lenght == 5) {
+                        await interaction.reply(`Teams reeeeeeeeaaaaaaaaaaaaady baby!!!!!!!!!!!!!!!`);
+                        return;   
+                    }
                 } else if (teamOne.lenght == teamTwo.lenght) {
                     if (user == team2Cap.player) {
                         await interaction.reply(`Isnt your time to pick`);
