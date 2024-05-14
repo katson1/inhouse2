@@ -65,12 +65,11 @@ export default {
         
             const findUser = await playersql.getPlayerByusername(userUsername);
             if (findUser.length > 0) {
-                console.log(findUser);
                 const primaryEmoji = emojis[findUser[0].primary_role];
-                const secondaryEmoji = emojis[findUser[0].second_role];
+                const secondaryEmoji = emojis[findUser[0].secondary_role];
                 
                 embed.title = `${userUsername}, you have already joined:`;
-                embed.description = `\`MMR ${findUser[0].mmr}\` - ${primaryEmoji} ${secondaryEmoji ? secondaryEmoji : ''}`;
+                embed.description = `\`MMR ${findUser[0].mmr}\` - ${primaryEmoji}${secondaryEmoji ? secondaryEmoji : ''}`;
             } else {
                 let mmr;
                 switch (rank) {

@@ -15,6 +15,20 @@ class Player {
     return rows;
   }
 
+  async getPlayerByUsernameWithRank(username) {
+    const query = `
+      SELECT p.*, (
+        SELECT COUNT(*) + 1 
+        FROM player 
+        WHERE mmr > p.mmr
+      ) AS rank
+      FROM player p
+      WHERE p.username = ? 
+    `;
+    const rows = await this.query(query, [username]);
+    return rows;
+  }
+
   async getPlayerByTopMMR() {
     const rows = await this.query('SELECT * FROM player ORDER BY mmr DESC LIMIT 10');
     return rows;

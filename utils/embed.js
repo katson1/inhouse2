@@ -6,7 +6,7 @@ export const getEmbed = () => {
         description: '',
         fields: [],
         footer: {
-            text: 'Developed by Katson (github.com/katson1)'
+            text: ''
         },
     };
 

@@ -43,10 +43,10 @@ export default {
             const findUser = await playerModel.getPlayerByusername(playerFromLobby);
             if (findUser.length > 0) {
                 const primaryEmoji = emojis[findUser[0].primary_role];
-                const secondaryEmoji = findUser[0].second_role ? emojis[findUser[0].second_role] : '';
+                const secondaryEmoji = findUser[0].secondary_role ? emojis[findUser[0].secondary_role] : '';
                 
                 exampleEmbed.fields.push({
-                    name: `\`${findUser[0].mmr}\`${primaryEmoji} ${secondaryEmoji}${playerFromLobby}`,
+                    name: `\`${findUser[0].mmr}\`${primaryEmoji}${secondaryEmoji} ${playerFromLobby}`,
                     value: ``,
                     inline: false
                 });
