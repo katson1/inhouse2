@@ -14,7 +14,7 @@ createMatchController();
 export default {
     data: new SlashCommandBuilder()
         .setName("join")
-        .setDescription("Shows player rankings!")
+        .setDescription("Joins the inhouse!")
         .addStringOption(option =>
             option.setName('rank')
                 .setDescription('Select your rank.')
@@ -51,17 +51,21 @@ export default {
         async execute(interaction) {
             const rank = interaction.options.getString('rank');
             const primaryRole = interaction.options.getString('primary_role');
-            let secondaryRole = interaction.options.getString('secondary_role');
+            const secondaryRole = interaction.options.getString('secondary_role');
+
+            if (primaryRole == secondaryRole) {
+                secondaryRole = null;
+            }
               
-            let embed = getEmbed();
+            const embed = getEmbed();
             const userToAdd = interaction.guild.members.cache.get(interaction.user.id);
-            let userUsername = userToAdd.user.username;
+            const userUsername = userToAdd.user.username;
             embed.title = `${userUsername} just joined inhouse!`;
         
             const primaryEmoji = emojis[primaryRole];
             const secondaryEmoji = secondaryRole ? emojis[secondaryRole] : '';
         
-            embed.description = `rank: \`${rank}\` - ${primaryEmoji} ${secondaryRole ? secondaryEmoji : ''}`;
+            embed.description = `\`${rank}\` - ${primaryEmoji} ${secondaryRole ? secondaryEmoji : ''}`;
         
             const findUser = await playersql.getPlayerByusername(userUsername);
             if (findUser.length > 0) {

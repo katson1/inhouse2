@@ -79,6 +79,14 @@ class Player {
     await this.run('UPDATE player SET mmr = mmr - 5 WHERE username = ?', [username]);
   }
 
+  async updatePlayerPrimaryRole(primary_role, username) {
+    await this.run('UPDATE player SET primary_role = ? WHERE username = ?', [primary_role, username]);
+  }
+
+  async updatePlayerSecondaryRole(secondary_role, username) {
+    await this.run('UPDATE player SET secondary_role = ? WHERE username = ?', [secondary_role, username]);
+  }
+
   query(sql, params) {
     return new Promise((resolve, reject) => {
       this.db.all(sql, params, (error, rows) => {

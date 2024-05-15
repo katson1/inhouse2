@@ -62,19 +62,19 @@ export default {
             } else {
                 if (teamOne.lenght > teamTwo.lenght) {
                     if (user == team1Cap.player) {
-                        await interaction.reply(`Isnt your time to pick`);
+                        await interaction.reply({ content: `Isn't your time to pick!`, ephemeral: true });
                         return;
                     }
                     team2.insertPlayerOnTeam2(player);
 
-                    updatedTeam2 = await team2.getTeam2();
+                    updatedTeam2 = await team2.getTeam2(); 
                     if (updatedTeam2.lenght == 5) {
                         await interaction.reply(`Teams reeeeeeeeaaaaaaaaaaaaady baby!!!!!!!!!!!!!!!`);
-                        return;   
+                        return;
                     }
                 } else if (teamOne.lenght == teamTwo.lenght) {
                     if (user == team2Cap.player) {
-                        await interaction.reply(`Isnt your time to pick`);
+                        await interaction.reply({ content: `Isn't your time to pick!`, ephemeral: true });
                         return;
                     }
                     team1.insertPlayerOnTeam1(player)
@@ -82,7 +82,7 @@ export default {
                 exampleEmbed.title = `${user} picked: ${player}`;
             }
         } else {
-            exampleEmbed.title = `${player} isnt on the lobby channel`;
+            exampleEmbed.title = `${player} isn't on the lobby channel`;
         }
 
         await interaction.reply({ embeds: [exampleEmbed] });
