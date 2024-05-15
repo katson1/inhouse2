@@ -53,8 +53,13 @@ export default {
                 inline: false,
             },
             {
+                name: `/roles`,
+                value: `Display your current roles, or allows you to update your roles by selecting new options.`,
+                inline: false,
+            },
+            {
                 name: `/help`,
-                value: `Shows the description of the commands.`,
+                value: `Display the description of the commands.`,
                 inline: false,
             },
             {
