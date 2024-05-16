@@ -33,7 +33,7 @@ Make sure to read about the commands before using them. You can also use the `/h
   - This command configures the bot. You need to use it only once when you invite the bot to your server.
 </details>
 
-## 📦 How to install the bot at your server:
+## 📦 How to install and invite the bot at your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
 Clone the project.
