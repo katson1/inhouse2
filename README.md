@@ -1,9 +1,39 @@
 # inhouse2
-An in-house bot that drafts 2 teams and has an MMR system for custom games.
+An in-house bot that choose 2 random captains, and land allows them to pick players for [Heroes Of The Storm](https://heroesofthestorm.blizzard.com/pt-br/) custom games.
 
-It will work like the [inhousebot](https://github.com/katson1/inhousebot), but super improved.
+It operates with a lobby voice channel. Captains are randomly selected from the lobby channel and then they can pick players from the same channel.
 
-## 📦 How to use:
+Make sure to read about the commands before using them. You can also use the `/help` bot command to view all available commands and learn how to use them.
+
+
+## ⌨️ Commands:
+
+<details>
+  <summary> /join </summary>
+    
+  - Join and register as a player in the inhouse.
+  
+    * options:
+    
+        - `rank:` select your current skill rank. (required)
+        - `primary_role` - select your primary_role. (required)
+        - `secondary_role` - select your secondary_role. (optional)
+        
+</details>
+
+<details>
+  <summary> /help </summary>
+  
+  - Display the commands descriptions.
+</details>
+
+<details>
+  <summary> /config </summary>
+  
+  - This command configures the bot. You need to use it only once when you invite the bot to your server.
+</details>
+
+## 📦 How to install the bot at your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
 Clone the project.
