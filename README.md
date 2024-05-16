@@ -33,6 +33,12 @@ Make sure to read about the commands before using them. You can also use the `/h
   - This command configures the bot. You need to use it only once when you invite the bot to your server.
 </details>
 
+<details>
+  <summary> /list </summary>
+  
+  - List players in the lobby channel who are not captains or already picked.
+</details>
+
 ## 📦 How to install and invite the bot at your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
