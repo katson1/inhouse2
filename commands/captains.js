@@ -22,13 +22,13 @@ export default {
         const channel = guild.channels.cache.find(channel => channel.name === channelName);
 
         if (!channel) {
-            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome 'lobby'!", ephemeral: true });
+            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome 'lobby'!" });
             return;
         }
 
         const members = Array.from(channel.members.values()).map(member => member.user.username);
         if (members.length < 2) {
-            await interaction.reply({ content: "Não há jogadores suficientes no canal do Lobby." });
+            await interaction.reply({ content: `Não há jogadores suficientes no canal do Lobby. \`Min: 2\`` });
             return;
         }
 
@@ -37,11 +37,11 @@ export default {
         let cap2 = await playersql.getPlayerByusername(caps[1]);
 
         if (!cap1[0]) {
-            await interaction.reply({ content:  `Erro: ${caps[0]}, foi selecionado como capitão, mas não está inscrito na inhouse.` });
+            await interaction.reply({ content:  `Erro: ${caps[0]}, foi selecionado como capitão, mas não está inscrito na inhouse. Use \`/captain\` novamente.` });
             return;
         } 
         if (!cap2[0]) {
-            await interaction.reply({ content: `Erro: ${caps[1]}, foi selecionado como capitão, mas não está inscrito na inhouse.` });
+            await interaction.reply({ content: `Erro: ${caps[1]}, foi selecionado como capitão, mas não está inscrito na inhouse. Use \`/captain\` novamente.` });
             return;
         }
 
@@ -77,12 +77,12 @@ export default {
         exampleEmbed.title = 'Captains for next lobby:';
         exampleEmbed.fields.push(
             {
-                name: `\`${fp[0].mmr}\`${primaryEmoji_fp}${secondaryEmoji_fp} ${fp[0].username} (first pick)` || "No user in the lobby channel",
+                name: `\`${fp[0].mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} ${fp[0].username} (first pick)`,
                 value: '',
                 inline: false,
             },
             {
-                name: `\`${other[0].mmr}\`${primaryEmoji_other}${secondaryEmoji_other} ${other[0].username}` || "No user in the lobby channel",
+                name: `\`${other[0].mmr}\` ${primaryEmoji_other}${secondaryEmoji_other} ${other[0].username}`,
                 value: '',
                 inline: false,
             }
