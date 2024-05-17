@@ -86,6 +86,6 @@ export default {
             } else {
                 embed.title = `${userUsername}, you haven't joined yet, use \`/join\`!`;
             }
-            interaction.reply({ embeds: [embed]});
+            interaction.reply({ embeds: [embed], ephemeral: true} );
         }
 }
