@@ -39,6 +39,12 @@ Make sure to read about the commands before using them. You can also use the `/h
   - List players in the lobby channel who are not captains or already picked.
 </details>
 
+<details>
+  <summary> /leaderboard </summary>
+  
+  - Show players leaderboard based on MMR.
+</details>
+
 ## 📦 How to install and invite the bot at your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
