@@ -26,13 +26,13 @@ export default {
                 value: `**options**:
 
 - \`rank:\` select your current skill rank. (required)
-- \`primary_role\` - choose your primary_role. (optional)
+- \`primary_role\` - choose your primary_role. (required)
 - \`secondary_role\` - choose your secondary_role. (optional)`,
                 inline: true,
             },
             {
                 name: `**/list**`,
-                value: `List players in the lobby channel who is not captains or already picked.`,
+                value: `List players in the lobby channel who is not a captain or already picked.`,
                 inline: false,
             },
             {
@@ -47,7 +47,7 @@ export default {
             },
             {
                 name: `**/pick**`,
-                value: `A captain can pick a player from the lobby channel who are not captains or already picked.`,
+                value: `A captain can pick a player from the lobby channel who is not a captain or already picked.`,
                 inline: false,
             },
             {
