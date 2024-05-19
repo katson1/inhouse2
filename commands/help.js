@@ -37,7 +37,7 @@ export default {
             },
             {
                 name: `**/captains**`,
-                value: `Choose two random captains.`,
+                value: `Choose two random captains from lobby channel.`,
                 inline: false,
             },
             {
