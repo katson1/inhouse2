@@ -30,7 +30,7 @@ class Player {
   }
 
   async getPlayerByTopMMR() {
-    const rows = await this.query('SELECT * FROM player ORDER BY mmr DESC LIMIT 10');
+    const rows = await this.query('SELECT rowid, * FROM player ORDER BY mmr DESC LIMIT 10');
     return rows;
   }
 
