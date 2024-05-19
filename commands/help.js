@@ -7,9 +7,9 @@ export default {
         .setDescription("Info about commands!"),
 
     async execute(interaction) {
-        const exampleEmbed = getEmbed();
-        exampleEmbed.title = 'Commands:';
-        exampleEmbed.fields.push(
+        const helpEmbed = getEmbed();
+        helpEmbed.title = 'Commands:';
+        helpEmbed.fields.push(
             {
                 name: `**/join**`,
                 value: `Join and register as a player in the inhouse.
@@ -84,6 +84,6 @@ export default {
                 inline: false,
             }
         );
-        await interaction.reply({ embeds: [exampleEmbed] });
+        await interaction.reply({ embeds: [helpEmbed] });
     }
 };
