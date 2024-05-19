@@ -37,7 +37,7 @@ export default {
             return;
         }
 
-        const exampleEmbed = getEmbed();
+        const pickEmbed = getEmbed();
 
         const members = Array.from(channel.members.values()).map(member => member.user.username);
 
@@ -79,12 +79,12 @@ export default {
                     }
                     team1.insertPlayerOnTeam1(player)
                 }
-                exampleEmbed.title = `${user} picked: ${player}`;
+                pickEmbed.title = `${user} picked: ${player}`;
             }
         } else {
-            exampleEmbed.title = `${player} isn't on the lobby channel`;
+            pickEmbed.title = `${player} isn't on the lobby channel`;
         }
 
-        await interaction.reply({ embeds: [exampleEmbed] });
+        await interaction.reply({ embeds: [pickEmbed] });
     }
 }

@@ -47,9 +47,9 @@ export default {
 
         const pickInprogress = await team1.getTeam1();
         if (pickInprogress.length > 1) {
-            const exampleEmbed = getEmbed();
-            exampleEmbed.title = 'One team has already picked a player, use `/clear`';
-            await interaction.reply({ embeds: [exampleEmbed] });
+            const captainsEmbed = getEmbed();
+            captainsEmbed.title = 'One team has already picked a player, use `/clear`';
+            await interaction.reply({ embeds: [captainsEmbed] });
             return;
         }
 
@@ -73,9 +73,9 @@ export default {
         const primaryEmoji_other = emojis[other[0].primary_role];
         const secondaryEmoji_other = other[0].secondary_role ? emojis[other[0].secondary_role] : '';
 
-        const exampleEmbed = getEmbed();
-        exampleEmbed.title = 'Captains for next lobby:';
-        exampleEmbed.fields.push(
+        const captainsEmbed = getEmbed();
+        captainsEmbed.title = 'Captains for next lobby:';
+        captainsEmbed.fields.push(
             {
                 name: `\`${fp[0].mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} ${fp[0].username} (first pick)`,
                 value: '',
@@ -88,7 +88,7 @@ export default {
             }
         );
 
-        await interaction.reply({ embeds: [exampleEmbed] });
+        await interaction.reply({ embeds: [captainsEmbed] });
     }
 };
 
