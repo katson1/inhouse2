@@ -50,8 +50,13 @@ export default {
         const team1Cap = await team1.getTeam1Cap();
         const team2Cap = await team2.getTeam2Cap();
 
-        if(user == team1Cap.player || user == team2Cap.player){
+        if (user == team1Cap.player || user == team2Cap.player) {
             await interaction.reply(`You are not a captain!`);
+            return;
+        }
+
+        if (teamTwo.lenght == 5) {
+            await interaction.reply(`Game already start!`);
             return;
         }
 
