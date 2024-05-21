@@ -40,12 +40,52 @@ Make sure to read about the commands before using them. You can also use the `/h
 </details>
 
 <details>
+  <summary> /captains </summary>
+  
+  - Choose two random captains from lobby channel.
+</details>
+
+<details>
+  <summary> /pick </summary>
+  
+  - A captain can pick a player from the lobby channel who is not a captain or already picked.
+</details>
+
+<details>
+  <summary> /clear </summary>
+  
+  - Clear teams and captains.
+</details>
+
+<details>
+  <summary> /win </summary>
+  
+  - Select winner team.
+</details>
+
+<details>
   <summary> /leaderboard </summary>
   
   - Show players leaderboard based on MMR.
 </details>
 
-## 📦 How to install and invite the bot at your server:
+<details>
+  <summary> /roles </summary>
+  
+  - Display your current roles, or allows you to update your roles by selecting new options:
+    - If you set only primary_role, it will update the primary_role and erase secondary_role.
+    - If you set both primary_role and secondary_role, it will update both.
+    - If you set only secondary_role it will update only secondary_role.
+    - If you dosnt set any, it will show your currents roles.
+   
+  * options:
+  
+      - `rank:` select your current skill rank. (required)
+      - `primary_role` - select your primary_role. (required)
+      - `secondary_role` - select your secondary_role. (optional)
+</details>
+
+## 📦 How to install and invite the bot to your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
 Clone the project.
@@ -55,7 +95,7 @@ Install required packages into the project:
 npm install
   ```
 
-Now copy the .env.example file to **.env** file to the project:
+Copy the .env.example file to **.env** file to the project:
   ```.bash
 cp .env.example .env
   ```
