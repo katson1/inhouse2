@@ -16,9 +16,9 @@ export default {
         await team1.clearTeam1();
         await team2.clearTeam2();
 
-        const exampleEmbed = getEmbed();
-        exampleEmbed.title = 'The teams and captains was cleared!';
+        const clearEmbed = getEmbed();
+        clearEmbed.title = 'The teams and captains was cleared!';
 
-        await interaction.reply({ embeds: [exampleEmbed] });
+        await interaction.reply({ embeds: [clearEmbed] });
     }
 };

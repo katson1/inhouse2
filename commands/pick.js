@@ -37,7 +37,7 @@ export default {
             return;
         }
 
-        const exampleEmbed = getEmbed();
+        const pickEmbed = getEmbed();
 
         const members = Array.from(channel.members.values()).map(member => member.user.username);
 
@@ -50,8 +50,13 @@ export default {
         const team1Cap = await team1.getTeam1Cap();
         const team2Cap = await team2.getTeam2Cap();
 
-        if(user == team1Cap.player || user == team2Cap.player){
+        if (user == team1Cap.player || user == team2Cap.player) {
             await interaction.reply(`You are not a captain!`);
+            return;
+        }
+
+        if (teamTwo.lenght == 5) {
+            await interaction.reply(`Game already start!`);
             return;
         }
 
@@ -79,12 +84,12 @@ export default {
                     }
                     team1.insertPlayerOnTeam1(player)
                 }
-                exampleEmbed.title = `${user} picked: ${player}`;
+                pickEmbed.title = `${user} picked: ${player}`;
             }
         } else {
-            exampleEmbed.title = `${player} isn't on the lobby channel`;
+            pickEmbed.title = `${player} isn't on the lobby channel`;
         }
 
-        await interaction.reply({ embeds: [exampleEmbed] });
+        await interaction.reply({ embeds: [pickEmbed] });
     }
 }

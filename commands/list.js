@@ -31,9 +31,9 @@ export default {
             return;
         }
         
-        const exampleEmbed = getEmbed();
-        exampleEmbed.title = 'Player List';
-        exampleEmbed.description = `Pick players by using \`/pick\` `;
+        const listEmbed = getEmbed();
+        listEmbed.title = 'Player List';
+        listEmbed.description = `Pick players by using \`/pick\` `;
 
         const members = Array.from(channel.members.values()).map(member => member.user.username);
         const players = [...teamOne, ...teamTwo].map(team => team.player);
@@ -45,7 +45,7 @@ export default {
                 const primaryEmoji = emojis[findUser[0].primary_role];
                 const secondaryEmoji = findUser[0].secondary_role ? emojis[findUser[0].secondary_role] : '';
                 
-                exampleEmbed.fields.push({
+                listEmbed.fields.push({
                     name: `\`${findUser[0].mmr}\`${primaryEmoji}${secondaryEmoji} ${playerFromLobby}`,
                     value: ``,
                     inline: false
@@ -53,6 +53,6 @@ export default {
             }
         }
 
-        await interaction.reply({ embeds: [exampleEmbed] });
+        await interaction.reply({ embeds: [listEmbed] });
     }
 };

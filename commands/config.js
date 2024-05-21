@@ -12,8 +12,8 @@ export default {
         .setDescription("Configura o bot inicialmente"),
 
     async execute(interaction) {
-        const exampleEmbed = getEmbed();
-        exampleEmbed.title = 'The bot was configured!';
-        await interaction.reply({ embeds: [exampleEmbed] });
+        const configEmbed = getEmbed();
+        configEmbed.title = 'The bot was configured!';
+        await interaction.reply({ embeds: [configEmbed] });
     }
 };
