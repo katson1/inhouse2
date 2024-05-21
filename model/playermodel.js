@@ -71,12 +71,8 @@ class Player {
     await this.run('UPDATE player SET games = games + 1 WHERE username = ?', [username]);
   }
 
-  async updatePlayerMmrWin(username) {
-    await this.run('UPDATE player SET mmr = mmr + 5 WHERE username = ?', [username]);
-  }
-
-  async updatePlayerMmrLose(username) {
-    await this.run('UPDATE player SET mmr = mmr - 5 WHERE username = ?', [username]);
+  async updatePlayerMmr(mmr, username) {
+    await this.run('UPDATE player SET mmr = ? WHERE username = ?', [mmr, username]);
   }
 
   async updatePlayerPrimaryRole(primary_role, username) {
