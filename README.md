@@ -85,7 +85,7 @@ Make sure to read about the commands before using them. You can also use the `/h
       - `secondary_role` - select your secondary_role. (optional)
 </details>
 
-## 📦 How to install and invite the bot at your server:
+## 📦 How to install and invite the bot to your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
 Clone the project.
@@ -95,7 +95,7 @@ Install required packages into the project:
 npm install
   ```
 
-Now copy the .env.example file to **.env** file to the project:
+Copy the .env.example file to **.env** file to the project:
   ```.bash
 cp .env.example .env
   ```
