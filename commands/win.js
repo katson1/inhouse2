@@ -23,24 +23,31 @@ export default {
         const winEmbed = getEmbed();
         const winner = interaction.options.getString('winner');
 
-        if (team1.lenght < 5) {
+        const teamOne = team1.getTeam1();
+        const teamTwo = team2.getTeam2();
+
+        if (teamOne.lenght < 5) {
             winEmbed.title = 'Team 1 isnt complete!';
             await interaction.reply({ embeds: [winEmbed] });
             return;
         }
 
-        if (team2.lenght < 5) {
+        if (teamTwo.lenght < 5) {
             winEmbed.title = 'Team 2 isnt complete!';
             await interaction.reply({ embeds: [winEmbed] });
             return;
         }
 
         if (winner == "team_1") {
-            console.log("111111111111");
+            teamOne.forEach(player => {
+                console.log(player);
+            });
         }
 
         if (winner == "team_2") {
-            console.log("222222");
+            teamTwo.forEach(player => {
+                console.log(player);
+            });
         }
 
         winEmbed.title = 'Winner setted sucessfuly!';
