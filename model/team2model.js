@@ -22,6 +22,11 @@ class Team2 {
   async clearTeam2() {
     await this.run('DELETE FROM team2');
   }
+  
+  async getTeam2MMR() {
+    const rows = await this.query('SELECT AVG(mmr) AS mmr FROM team2');
+    return rows[0];
+  }
 
   query(sql, params) {
     return new Promise((resolve, reject) => {
