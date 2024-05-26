@@ -8,8 +8,7 @@ import emojis from '../utils/emojis.js';
 const team1 = new Team1('mydb.sqlite');
 const team2 = new Team2('mydb.sqlite');
 const playerModel = new Player('mydb.sqlite');
-const teamOne = await team1.getTeam1();
-const teamTwo = await team2.getTeam2();
+
 
 export default {
     data: new SlashCommandBuilder()
@@ -18,7 +17,7 @@ export default {
 
     async execute(interaction) {
         const guild = interaction.guild;
-        const channelName = "lobby";
+        const channelName = "Mix・Lobby";
         var channel = null;
         for (const [chave, canal] of guild.channels.cache.entries()) {
             if (canal.type === 2 && canal.name === channelName) {
@@ -35,9 +34,20 @@ export default {
         listEmbed.title = 'Player List';
         listEmbed.description = `Pick players by using \`/pick\` `;
 
+        const teamOne = await team1.getTeam1();
+        const teamTwo = await team2.getTeam2();
+
         const members = Array.from(channel.members.values()).map(member => member.user.username);
         const players = [...teamOne, ...teamTwo].map(team => team.player);
         const filteredMembers = members.filter(member => !players.includes(member));
+
+        if (filteredMembers.length < 1) {
+            listEmbed.title = 'No players left to pick!';
+            listEmbed.description = ``;
+
+            await interaction.reply({ embeds: [listEmbed] });
+            return;
+        }
 
         for (const playerFromLobby of filteredMembers) {
             const findUser = await playerModel.getPlayerByusername(playerFromLobby);

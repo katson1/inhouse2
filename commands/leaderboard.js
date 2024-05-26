@@ -21,7 +21,7 @@ export default {
             const secondaryEmoji = player.secondary_role ? emojis[player.secondary_role] : '';
 
             leaderboardEmbed.fields.push({
-                name: `${player.rowid} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${player.username}\u200b \u200b \u200b \u200b`,
+                name: `${player.position} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${player.username}\u200b \u200b \u200b \u200b`,
                 value: `Wins: ${player.win}\nLosses: ${player.lose}\nGames: ${player.games}`,
                 inline: true
             });

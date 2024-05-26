@@ -18,7 +18,7 @@ export default {
 
     async execute(interaction) {
         const guild = interaction.guild;
-        const channelName = "lobby";
+        const channelName = "Mix・Lobby";
         const channel = guild.channels.cache.find(channel => channel.name === channelName);
 
         if (!channel) {

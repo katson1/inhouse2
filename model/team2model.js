@@ -24,7 +24,7 @@ class Team2 {
   }
   
   async getTeam2MMR() {
-    const rows = await this.query('SELECT AVG(mmr) AS mmr FROM team2');
+    const rows = await this.query('SELECT AVG(mmr) AS mmr FROM team2 inner join player on username = player');
     return rows[0];
   }
 

@@ -30,7 +30,23 @@ class Player {
   }
 
   async getPlayerByTopMMR() {
-    const rows = await this.query('SELECT rowid, * FROM player ORDER BY mmr DESC LIMIT 10');
+    const query = `
+      SELECT 
+        username, 
+        mmr, 
+        win, 
+        lose, 
+        games, 
+        primary_role, 
+        secondary_role, 
+        ROW_NUMBER() OVER (ORDER BY mmr DESC) AS position 
+      FROM 
+        player 
+      ORDER BY 
+        mmr DESC 
+      LIMIT 10
+    `;
+    const rows = await this.query(query);
     return rows;
   }
 
@@ -81,6 +97,14 @@ class Player {
 
   async updatePlayerSecondaryRole(secondary_role, username) {
     await this.run('UPDATE player SET secondary_role = ? WHERE username = ?', [secondary_role, username]);
+  }
+
+  async updatePlayerWinStats(username) {
+    await this.run('UPDATE player SET mmr = mmr + 10, win = win + 1, games = games + 1 WHERE username = ?', [username]);
+  }
+
+  async updatePlayerLoseStats(username) {
+    await this.run('UPDATE player SET mmr = mmr - 10, lose = lose + 1, games = games + 1 WHERE username = ?', [username]);
   }
 
   query(sql, params) {
