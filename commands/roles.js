@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import Player from '../model/playermodel.js';
 import { getEmbed } from '../utils/embed.js';
-import { createMatchController, createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
+import { createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
 import emojis from '../utils/emojis.js';
 
 const playersql = new Player('mydb.sqlite');
@@ -9,7 +9,6 @@ const playersql = new Player('mydb.sqlite');
 createTablePlayer();
 createTableTeam1();
 createTableTeam2();
-createMatchController();
 
 export default {
     data: new SlashCommandBuilder()

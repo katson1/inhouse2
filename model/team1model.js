@@ -15,6 +15,11 @@ class Team1 {
     return rows[0];
   }
 
+  async getTeam1MMR() {
+    const rows = await this.query('SELECT AVG(mmr) AS mmr FROM team1 inner join player on username = player');
+    return rows[0];
+  }
+
   async insertPlayerOnTeam1(username) {
     await this.run('INSERT INTO team1 (player) VALUES (?)', [username]);
   }

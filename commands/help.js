@@ -14,9 +14,9 @@ export default {
                 name: `**/join**`,
                 value: `Join and register as a player in the inhouse.
                 A player can starts with:
-                            \`Gold\`: 1700 MMR
-                            \`Platinum\`: 1800 MMR
-                            \`Diamond\`: 1900 MMR
+                            \`Gold\`: 1775 MMR
+                            \`Platinum\`: 1875 MMR
+                            \`Diamond\`: 1975 MMR
                             \`Master\`: 2075 MMR
                             \`Pro\`: 2150 MMR`,
                 inline: true,

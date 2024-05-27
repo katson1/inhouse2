@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import Player from '../model/playermodel.js';
 import { getEmbed } from '../utils/embed.js';
-import { createMatchController, createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
+import { createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
 import emojis from '../utils/emojis.js';
 
 const playersql = new Player('mydb.sqlite');
@@ -9,7 +9,6 @@ const playersql = new Player('mydb.sqlite');
 createTablePlayer();
 createTableTeam1();
 createTableTeam2();
-createMatchController();
 
 export default {
     data: new SlashCommandBuilder()
@@ -78,13 +77,13 @@ export default {
                 let mmr;
                 switch (rank) {
                     case 'gold':
-                        mmr = 1700;
+                        mmr = 1775;
                         break;
                     case 'plat':
-                        mmr = 1800;
+                        mmr = 1875;
                         break;
                     case 'diamond':
-                        mmr = 1900;
+                        mmr = 1975;
                         break;
                     case 'master':
                         mmr = 2075;
