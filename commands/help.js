@@ -26,8 +26,8 @@ export default {
                 value: `**options**:
 
 - \`rank:\` select your current skill rank. (required)
-- \`primary_role\` - choose your primary_role. (required)
-- \`secondary_role\` - choose your secondary_role. (optional)`,
+- \`primary_role\` - select your primary_role. (required)
+- \`secondary_role\` - select your secondary_role. (optional)`,
                 inline: true,
             },
             {
@@ -37,7 +37,7 @@ export default {
             },
             {
                 name: `**/captains**`,
-                value: `Choose two random captains from lobby channel.`,
+                value: `Select two random captains from lobby channel.`,
                 inline: false,
             },
             {
