@@ -99,12 +99,12 @@ class Player {
     await this.run('UPDATE player SET secondary_role = ? WHERE username = ?', [secondary_role, username]);
   }
 
-  async updatePlayerWinStats(username) {
-    await this.run('UPDATE player SET mmr = mmr + 10, win = win + 1, games = games + 1 WHERE username = ?', [username]);
+  async updatePlayerWinStats(mmr, username) {
+    await this.run('UPDATE player SET mmr = mmr + ?, win = win + 1, games = games + 1 WHERE username = ?', [mmr, username]);
   }
 
-  async updatePlayerLoseStats(username) {
-    await this.run('UPDATE player SET mmr = mmr - 10, lose = lose + 1, games = games + 1 WHERE username = ?', [username]);
+  async updatePlayerLoseStats(mmr, username) {
+    await this.run('UPDATE player SET mmr = mmr - ?, lose = lose + 1, games = games + 1 WHERE username = ?', [mmr, username]);
   }
 
   query(sql, params) {
