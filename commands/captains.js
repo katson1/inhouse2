@@ -3,13 +3,11 @@ import { getEmbed } from "../utils/embed.js";
 import Player from '../model/playermodel.js';
 import Team1 from '../model/team1model.js';
 import Team2 from '../model/team2model.js';
-import MatchController from '../model/matchcontroller.js';
 import emojis from '../utils/emojis.js';
 
 const playersql = new Player('mydb.sqlite');
 const team1 = new Team1('mydb.sqlite');
 const team2 = new Team2('mydb.sqlite');
-const match = new MatchController('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()

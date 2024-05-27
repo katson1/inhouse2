@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "discord.js";
 import { getEmbed } from "../utils/embed.js";
-import { createMatchController, createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
+import { createTablePlayer, createTableTeam1, createTableTeam2 } from '../database/db.js';
 
 createTablePlayer();
 createTableTeam1();
