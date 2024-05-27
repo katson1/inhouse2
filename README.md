@@ -60,7 +60,17 @@ Make sure to read about the commands before using them. You can also use the `/h
 <details>
   <summary> /win </summary>
   
-  - Select winner team.
+- Select winner team.
+You earn `15 MMR` points per win.
+  - If the team you defeated has 20% or more **MMR** than you, you receive `17 MMR` points.
+  - If the team you defeated has 10% to 20% more **MMR** than you, you receive `16 MMR` points.
+  
+    **`The opposite occurs if you lose.`**
+  
+  - If you have `2500 MMR` points or more, you will receive `1 MMR` point less.
+  - If you have `2300 MMR` points or more, you will receive `2 MMR` points less.
+  - If you have `1800 MMR` points or less, you will receive `1 MMR` point more.
+  - If you have `1700 MMR` points or less, you will receive `2 MMR` points more.
 </details>
 
 <details>
