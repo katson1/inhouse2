@@ -9,6 +9,8 @@ export default {
     async execute(interaction) {
         const helpEmbed = getEmbed();
         helpEmbed.title = 'Commands:';
+        helpEmbed.footer.text = `\u200b
+Developed by @katson (on Discord)`;
         helpEmbed.fields.push(
             {
                 name: `**/join**`,
