@@ -66,7 +66,7 @@ export default {
             },
             {
                 name: `**/leaderboard**`,
-                value: `Shows leaderboard.`,
+                value: `Shows leaderboard based on MMR.`,
                 inline: false,
             },
             {
