@@ -55,10 +55,10 @@ export default {
                 if (percentageDifference > 15) {
                     winMMR = 14;
                 }
-                if (player.mmr > 2500) {
+                if (player.mmr > 2300) {
                     winMMR -= 1;
                 }
-                if (player.mmr > 2900) {
+                if (player.mmr > 2500) {
                     winMMR -= 1;
                 }
                 if (player.mmr < 1700) {
@@ -84,10 +84,10 @@ export default {
                 if (percentageDifference > 20) {
                     loseMMR = -13;
                 }
-                if (player.mmr > 2500) {
+                if (player.mmr > 2300) {
                     winMMR -= 1;
                 }
-                if (player.mmr > 2900) {
+                if (player.mmr > 2500) {
                     winMMR -= 1;
                 }
                 if (player.mmr < 1700) {
@@ -113,10 +113,10 @@ export default {
                 if (percentageDifference > 15) {
                     winMMR = 14;
                 }
-                if (player.mmr > 2500) {
+                if (player.mmr > 2300) {
                     winMMR -= 1;
                 }
-                if (player.mmr > 2900) {
+                if (player.mmr > 2500) {
                     winMMR -= 1;
                 }
                 await playerModel.updatePlayerWinStats(winMMR, player.player);
@@ -136,10 +136,10 @@ export default {
                 if (percentageDifference > 20) {
                     loseMMR = -13;
                 }
-                if (player.mmr > 2500) {
+                if (player.mmr > 2300) {
                     winMMR -= 1;
                 }
-                if (player.mmr > 2900) {
+                if (player.mmr > 2500) {
                     winMMR -= 1;
                 }
                 await playerModel.updatePlayerLoseStats(loseMMR, player.player);
