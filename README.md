@@ -80,6 +80,12 @@ You earn `15 MMR` points per win.
 </details>
 
 <details>
+  <summary> /myrank </summary>
+  
+  - Show your leaderboard position based on MMR.
+</details>
+
+<details>
   <summary> /roles </summary>
   
   - Display your current roles, or allows you to update your roles by selecting new options:
