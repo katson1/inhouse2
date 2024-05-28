@@ -7,26 +7,34 @@ const playerModel = new Player('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()
-        .setName("leaderboard")
-        .setDescription("Shows players leaderboard."),
+        .setName("myrank")
+        .setDescription("Shows your current rank postition."),
 
     async execute(interaction) {
         const leaderboardEmbed = getEmbed();
-        leaderboardEmbed.title = '🏆 - Leaderboard';
-
-        const list = await playerModel.getPlayerByTopMMR();
-
-        list.forEach(player => {
+        leaderboardEmbed.title = '🏆 - Your position:';
+        const user = interaction.user.username;
+        const list = await playerModel.getPlayerByUsernameWithRank(user);
+        const player = list[0]
+        if (player) {
             const primaryEmoji = emojis[player.primary_role];
             const secondaryEmoji = player.secondary_role ? emojis[player.secondary_role] : '';
             const winRate = calculateWinRate(player);
 
             leaderboardEmbed.fields.push({
-                name: `${player.position} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${player.username}\u200b \u200b \u200b \u200b`,
+                name: `${player.position} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${player.username}`,
                 value: `${player.win} **W** - ${player.lose} **L**\n**Win**%:   ${winRate}\n**Games:** ${player.games}`,
                 inline: true
             });
-        });
+        } else {
+            leaderboardEmbed.title = `🏆 - We couldn't find you:`;
+            leaderboardEmbed.fields.push({
+                name: `You have not joinned the inhouse:`,
+                value: `Use \`/join\``,
+                inline: true
+            });
+        }
+
         await interaction.reply({ embeds: [leaderboardEmbed] });
     }
 };

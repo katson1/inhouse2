@@ -21,7 +21,7 @@ class Player {
         SELECT COUNT(*) + 1 
         FROM player 
         WHERE mmr > p.mmr
-      ) AS rank
+      ) AS position
       FROM player p
       WHERE p.username = ? 
     `;
