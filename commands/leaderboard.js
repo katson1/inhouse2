@@ -22,8 +22,8 @@ export default {
             const winRate = calculateWinRate(player);
 
             leaderboardEmbed.fields.push({
-                name: `${player.position} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${player.username}\u200b \u200b \u200b \u200b`,
-                value: `${player.win} **W** - ${player.lose} **L**\n**Win**%:   ${winRate}\n**Games:** ${player.games}`,
+                name: `${player.position} - \`${player.mmr}\` ${player.username}\u200b \n${primaryEmoji} ${secondaryEmoji}`,
+                value: `${player.win} **W** - ${player.lose} **L**\n**Win**%:   ${winRate}\n**Games:** ${player.games}\n \u200b`,
                 inline: true
             });
         });

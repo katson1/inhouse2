@@ -44,7 +44,7 @@ class Player {
         player 
       ORDER BY 
         mmr DESC 
-      LIMIT 10
+      LIMIT 15
     `;
     const rows = await this.query(query);
     return rows;
