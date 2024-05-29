@@ -23,6 +23,7 @@ export default {
 
         const guild = interaction.guild;
         const channelName = "Mix・Lobby";
+        const channelName2 = "lobby";
         var channel = null;
         const user = interaction.user.username;
         const player = interaction.options.getUser('player').username;
@@ -33,9 +34,13 @@ export default {
                 channel = (canal);
             }
         }
+        
+        if (!channel) {
+            channel = guild.channels.cache.find(channel => channel.name == channelName2);
+        }
 
         if (!channel) {
-            await interaction.reply("Canal não encontrado!");
+            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome \`lobby\` ou \`Mix・Lobby\`!" });
             return;
         }
 

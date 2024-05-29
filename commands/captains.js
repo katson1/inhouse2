@@ -17,10 +17,15 @@ export default {
     async execute(interaction) {
         const guild = interaction.guild;
         const channelName = "Mix・Lobby";
-        const channel = guild.channels.cache.find(channel => channel.name === channelName);
+        const channelName2 = "lobby";
+        var channel = guild.channels.cache.find(channel => channel.name == channelName);
 
         if (!channel) {
-            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome 'lobby'!" });
+            channel = guild.channels.cache.find(channel => channel.name == channelName2);
+        }
+
+        if (!channel) {
+            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome \`lobby\` ou \`Mix・Lobby\`!" });
             return;
         }
 
