@@ -16,16 +16,16 @@ export default {
 
     async execute(interaction) {
         const guild = interaction.guild;
-        const channelName = "Mix・Lobby";
-        const channelName2 = "lobby";
-        var channel = guild.channels.cache.find(channel => channel.name == channelName);
-
-        if (!channel) {
-            channel = guild.channels.cache.find(channel => channel.name == channelName2);
+        const channelName = "lobby";
+        var channel = null;
+        for (const [chave, canal] of guild.channels.cache.entries()) {
+            if (canal.type === 2 && canal.name.toLowerCase().includes(channelName.toLowerCase())) {
+                channel = canal;
+            }
         }
 
         if (!channel) {
-            await interaction.reply({ content: "Canal 'lobby' não encontrado! Crie um canal de voz com nome \`lobby\` ou \`Mix・Lobby\`!" });
+            await interaction.reply({ content: "Canal com nome 'lobby' não encontrado! Crie um canal de voz com nome que contenha o nome **lobby** como por exemplo: \`lobby\`, \`Mix・Lobby\`, \`INHOUSE LOBBY\`!" });
             return;
         }
 
