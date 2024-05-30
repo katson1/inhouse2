@@ -77,7 +77,7 @@ Developed by @katson (on Discord)`;
             },
             {
                 name: `**/map**`,
-                value: `Choose a random map to vote on and play!`,
+                value: `Choose a random map to vote on and play.`,
                 inline: false,
             },
             {
