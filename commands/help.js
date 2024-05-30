@@ -60,8 +60,8 @@ Developed by @katson (on Discord)`;
 **\`The opposite occurs if you lose.\`**
 - If you have \`2500 MMR\` points or more, you will receive \`1 MMR\` point less.
 - If you have \`2300 MMR\` points or more, you will receive \`2 MMR\` points less.
-- If you have \`1800 MMR\` points or less, you will receive \`1 MMR\` point more.
-- If you have \`1700 MMR\` points or less, you will receive \`2 MMR\` points more.
+- If you have \`1800 MMR\` points or less, you will receive \`1 MMR\` additional point.
+- If you have \`1700 MMR\` points or less, you will receive \`2 MMR\` additional points .
                 `,
                 inline: false,
             },
