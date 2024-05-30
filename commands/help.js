@@ -26,7 +26,6 @@ Developed by @katson (on Discord)`;
             {
                 name: ``,
                 value: `**options**:
-
 - \`rank:\` select your current skill rank. (required)
 - \`primary_role\` - select your primary_role. (required)
 - \`secondary_role\` - select your secondary_role. (optional)`,
@@ -77,24 +76,19 @@ Developed by @katson (on Discord)`;
                 inline: false,
             },
             {
-                name: `**/roles**`,
-                value: `Display your current roles, or allows you to update your roles by selecting new options:
-                If you set only primary_role, it will update the primary_role and erase secondary_role.
-                If you set both primary_role and secondary_role, it will update both.
-                If you set only secondary_role it will update only secondary_role.
-                If you dosnt set any, it will show your currents roles.
-                `,
-                inline: true,
-            },
-            {
                 name: `**/map**`,
                 value: `Choose a random map to vote on and play!`,
+                inline: false,
+            },
+            {
+                name: `**/roles**`,
+                value: `Display your current roles, or allows you to update your roles by selecting new options.
+                `,
                 inline: true,
             },
             {
                 name: ``,
                 value: `**options**:
-
 - \`primary_role\` - update your primary_role. (optional)
 - \`secondary_role\` - update your secondary_role. (optional)`,
                 inline: true,
