@@ -76,13 +76,13 @@ You earn `15 MMR` points per win.
 <details>
   <summary> /leaderboard </summary>
   
-  - Show players leaderboard based on MMR.
+  - Shows players leaderboard based on MMR.
 </details>
 
 <details>
   <summary> /myrank </summary>
   
-  - Show your leaderboard position based on MMR.
+  - Shows your leaderboard position based on MMR.
 </details>
 
 <details>
@@ -99,6 +99,12 @@ You earn `15 MMR` points per win.
       - `rank:` select your current skill rank. (required)
       - `primary_role` - select your primary_role. (required)
       - `secondary_role` - select your secondary_role. (optional)
+</details>
+
+<details>
+  <summary> /map </summary>
+  
+  - Choose a random map to vote on and play!
 </details>
 
 ## 📦 How to install and invite the bot to your server:

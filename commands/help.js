@@ -72,6 +72,11 @@ Developed by @katson (on Discord)`;
                 inline: false,
             },
             {
+                name: `**/myrank**`,
+                value: `Shows your leaderboard position based on MMR.`,
+                inline: false,
+            },
+            {
                 name: `**/roles**`,
                 value: `Display your current roles, or allows you to update your roles by selecting new options:
                 If you set only primary_role, it will update the primary_role and erase secondary_role.
@@ -79,6 +84,11 @@ Developed by @katson (on Discord)`;
                 If you set only secondary_role it will update only secondary_role.
                 If you dosnt set any, it will show your currents roles.
                 `,
+                inline: true,
+            },
+            {
+                name: `**/map**`,
+                value: `Choose a random map to vote on and play!`,
                 inline: true,
             },
             {
