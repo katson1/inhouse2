@@ -58,6 +58,12 @@ Make sure to read about the commands before using them. You can also use the `/h
 </details>
 
 <details>
+  <summary> /redraft </summary>
+  
+  - Clear teams but keep captains.
+</details>
+
+<details>
   <summary> /win </summary>
   
 - Select winner team.

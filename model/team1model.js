@@ -28,6 +28,10 @@ class Team1 {
     await this.run('DELETE FROM team1');
   }
 
+  async redraftTeam1() {
+    await this.run('DELETE FROM team1 where rowid <> 1');
+  }
+
   query(sql, params) {
     return new Promise((resolve, reject) => {
       this.db.all(sql, params, (error, rows) => {
