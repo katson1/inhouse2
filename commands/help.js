@@ -47,6 +47,11 @@ Developed by @katson (on Discord)`;
                 inline: false,
             },
             {
+                name: `**/redraft**`,
+                value: `Clear teams but keep captains.`,
+                inline: false,
+            },
+            {
                 name: `**/pick**`,
                 value: `A captain can pick a player from the lobby channel who is not a captain or already picked.`,
                 inline: false,
