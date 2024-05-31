@@ -14,21 +14,13 @@ Developed by @katson (on Discord)`;
         helpEmbed.fields.push(
             {
                 name: `**/join**`,
-                value: `Join and register as a player in the inhouse.
-                A player can starts with:
-                            \`Gold\`: 1775 MMR
-                            \`Platinum\`: 1875 MMR
-                            \`Diamond\`: 1975 MMR
-                            \`Master\`: 2075 MMR
-                            \`Pro\`: 2150 MMR`,
+                value: `Join and register as a player in the inhouse.`,
                 inline: true,
             },
             {
                 name: ``,
                 value: `**options**:
-- \`rank:\` select your current skill rank. (required)
-- \`primary_role\` - select your primary_role. (required)
-- \`secondary_role\` - select your secondary_role. (optional)`,
+- \`rank\`, \`primary_role\`, \`secondary_role\``,
                 inline: true,
             },
             {
@@ -53,22 +45,30 @@ Developed by @katson (on Discord)`;
             },
             {
                 name: `**/pick**`,
-                value: `A captain can pick a player from the lobby channel who is not a captain or already picked.`,
+                value: `A captain can select an available player from the lobby who isn't a captain.`,
+                inline: true,
+            },
+            {
+                name: ``,
+                value: `**option**:
+- \`player\``,
+                inline: true,
+            },
+            {
+                name: `**/map**`,
+                value: `Choose a random map to vote on and play.`,
                 inline: false,
             },
             {
                 name: `**/win**`,
-                value: `Select winner team.
-                You earn \`15 MMR\` points per win.
-- If the team you defeated has 20% or more \`MMR\` than you, you receive \`17 MMR\` points.
-- If the team you defeated has 10% to 20% more \`MMR\` than you, you receive \`16 MMR\` points.
-**\`The opposite occurs if you lose.\`**
-- If you have \`2500 MMR\` points or more, you will receive \`1 MMR\` point less.
-- If you have \`2300 MMR\` points or more, you will receive \`2 MMR\` points less.
-- If you have \`1800 MMR\` points or less, you will receive \`1 MMR\` additional point.
-- If you have \`1700 MMR\` points or less, you will receive \`2 MMR\` additional points .
-                `,
-                inline: false,
+                value: `Select winner team.`,
+                inline: true,
+            },
+            {
+                name: ``,
+                value: `**option**:
+- \`winner (team)\``,
+                inline: true,
             },
             {
                 name: `**/leaderboard**`,
@@ -81,21 +81,15 @@ Developed by @katson (on Discord)`;
                 inline: false,
             },
             {
-                name: `**/map**`,
-                value: `Choose a random map to vote on and play.`,
-                inline: false,
-            },
-            {
                 name: `**/roles**`,
-                value: `Display your current roles, or allows you to update your roles by selecting new options.
+                value: `Display your current roles, or allows you to update your roles.
                 `,
                 inline: true,
             },
             {
                 name: ``,
                 value: `**options**:
-- \`primary_role\` - update your primary_role. (optional)
-- \`secondary_role\` - update your secondary_role. (optional)`,
+- \`primary_role\`, \`secondary_role\``,
                 inline: true,
             },
             {
