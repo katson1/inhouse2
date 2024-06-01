@@ -10,6 +10,11 @@ class Team2 {
     return rows;
   }
 
+  async getTeam2WithPlayers() {
+    const rows = await this.query('SELECT * FROM team2 inner join player on username = player');
+    return rows;
+  }
+
   async getTeam2Cap() {
     const rows = await this.query('SELECT rowid, * FROM team2 where rowid = 1');
     return rows[0];

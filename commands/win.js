@@ -29,7 +29,6 @@ export default {
         const team1MMR = await team1.getTeam1MMR();
         const team2MMR = await team2.getTeam2MMR();
 
-
         if (teamOne.length < 5) {
             winEmbed.title = 'Team 1 isn\'t complete!';
             await interaction.reply({ embeds: [winEmbed] });

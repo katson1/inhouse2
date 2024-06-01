@@ -104,7 +104,7 @@ class Player {
   }
 
   async updatePlayerLoseStats(mmr, username) {
-    await this.run('UPDATE player SET mmr = mmr - ?, lose = lose + 1, games = games + 1 WHERE username = ?', [mmr, username]);
+    await this.run('UPDATE player SET mmr = mmr + ?, lose = lose + 1, games = games + 1 WHERE username = ?', [mmr, username]);
   }
 
   query(sql, params) {

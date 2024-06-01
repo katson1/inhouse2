@@ -95,8 +95,8 @@ export default {
                 } else {
                     message = `${user} picked: ${player}`;
                     pickEmbed.title = "Teams ready!";
-                    const updatedTeam1 = await team1.getTeam1();
-                    const updatedTeam2 = await team2.getTeam2();
+                    const updatedTeam1 = await team1.getTeam1WithPlayers();
+                    const updatedTeam2 = await team2.getTeam2WithPlayers();
 
                     const team1MMR = await team1.getTeam1MMR();
                     const team2MMR = await team2.getTeam2MMR();
