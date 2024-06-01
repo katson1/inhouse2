@@ -6,7 +6,7 @@ class Team1 {
   }
 
   async getTeam1() {
-    const rows = await this.query('SELECT rowid, * FROM team1 inner join player on username = player');
+    const rows = await this.query('SELECT rowid, * FROM team1');
     return rows;
   }
 
