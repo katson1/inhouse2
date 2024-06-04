@@ -14,7 +14,9 @@ export default {
         const leaderboardEmbed = getEmbed();
         leaderboardEmbed.title = '🏆 - Your position:';
         const user = interaction.user.username;
-        const list = await playerModel.getPlayerByUsernameWithRank(user);
+        const userID = interaction.user.id;
+        const userGlobalName = interaction.user.globalName;
+        const list = await playerModel.getPlayerByUsernameWithRank(userID);
         const player = list[0]
         if (player) {
             const primaryEmoji = emojis[player.primary_role];
@@ -22,7 +24,7 @@ export default {
             const winRate = calculateWinRate(player);
 
             leaderboardEmbed.fields.push({
-                name: `${player.position} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${player.username}`,
+                name: `${player.position} - \`${player.mmr}\` ${primaryEmoji}${secondaryEmoji}${userGlobalName}`,
                 value: `${player.win} **W** - ${player.lose} **L**\n**Win**%:   ${winRate}\n**Games:** ${player.games}`,
                 inline: true
             });
