@@ -31,7 +31,6 @@ export default {
             } else {
                 
             }
-
-            interaction.reply({ embeds: [achievementsEmbed] } );
+             interaction.reply({ embeds: [achievementsEmbed] } );
         }
 }

@@ -5,3 +5,4 @@ node_modules/
 #localfiles
 .env
 mydb.sqlite
+mydb copy.sqlite
