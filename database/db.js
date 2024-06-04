@@ -82,3 +82,35 @@ export function createTableTeam2() {
         }
     });
 }
+
+export function createTableAchievements() {
+    const db = new sqlite3.Database('mydb.sqlite', (err) => {
+        if (err) {
+          console.error(err.message);
+        }
+        //console.log('Connected to the mydb.sqlite database.');
+    });
+
+    db.run(`
+    CREATE TABLE IF NOT EXISTS achievements (
+        achievement_id SERIAL PRIMARY KEY,
+        username text NOT NULL,
+        achievement_name text NOT NULL,
+        achievement_description text,
+        date_achieved DATE NOT NULL,
+        rarity text NOT NULL,
+        emoji_reference text NOT NULL,
+        FOREIGN KEY (username) REFERENCES player (username)
+    )`, [], err => {
+        if(err) {
+            console.error(err.message);
+        } else {
+        }
+    });
+
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+    });
+}
