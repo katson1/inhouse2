@@ -38,13 +38,12 @@ class Player {
         lose, 
         games, 
         primary_role, 
-        secondary_role, 
-        ROW_NUMBER() OVER (ORDER BY mmr DESC) AS position 
+        secondary_role
       FROM 
         player 
       ORDER BY 
         mmr DESC 
-      LIMIT 15
+      LIMIT 20
     `;
     const rows = await this.query(query);
     return rows;
