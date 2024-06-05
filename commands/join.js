@@ -58,11 +58,8 @@ export default {
               
             const embed = getEmbed();
             const userToAdd = interaction.guild.members.cache.get(interaction.user.id);
-            const userUsername = userToAdd.user.username;
             const userGlobalName = userToAdd.user.globalName;
-            console.log(userToAdd);
             const userID = userToAdd.user.id;
-            console.log(userID);
             embed.title = `${userGlobalName} just joined inhouse!`;
         
             const primaryEmoji = emojis[primaryRole];
