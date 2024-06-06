@@ -15,6 +15,7 @@ class Player {
     return rows;
   }
 
+  //unnused
   async getPlayerByUsernameWithRank(username) {
     const query = `
       SELECT p.*, (
@@ -80,10 +81,6 @@ class Player {
 
   async updatePlayerLoses(username) {
     await this.run('UPDATE player SET lose = lose + 1 WHERE username = ?', [username]);
-  }
-
-  async updatePlayerGames(username) {
-    await this.run('UPDATE player SET games = games + 1 WHERE username = ?', [username]);
   }
 
   async updatePlayerMmr(mmr, username) {
