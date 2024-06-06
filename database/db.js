@@ -43,7 +43,7 @@ export function createTableTeam1() {
 
     db.run(`
     CREATE TABLE IF NOT EXISTS team1 (
-        player string
+        player text
     )`, [], err => {
         if(err) {
             console.error(err.message);
@@ -68,7 +68,7 @@ export function createTableTeam2() {
 
     db.run(`
     CREATE TABLE IF NOT EXISTS team2 (
-        player string
+        player text
     )`, [], err => {
         if(err) {
             console.error(err.message);
