@@ -58,20 +58,21 @@ export default {
               
             const embed = getEmbed();
             const userToAdd = interaction.guild.members.cache.get(interaction.user.id);
-            const userUsername = userToAdd.user.username;
-            embed.title = `${userUsername} just joined inhouse!`;
+            const userGlobalName = userToAdd.user.globalName;
+            const userID = userToAdd.user.id;
+            embed.title = `${userGlobalName} just joined inhouse!`;
         
             const primaryEmoji = emojis[primaryRole];
             const secondaryEmoji = secondaryRole ? emojis[secondaryRole] : '';
         
             embed.description = `\`${rank}\` - ${primaryEmoji} ${secondaryRole ? secondaryEmoji : ''}`;
         
-            const findUser = await playersql.getPlayerByusername(userUsername);
+            const findUser = await playersql.getPlayerByusername(userID);
             if (findUser.length > 0) {
                 const primaryEmoji = emojis[findUser[0].primary_role];
                 const secondaryEmoji = emojis[findUser[0].secondary_role];
                 
-                embed.title = `${userUsername}, you have already joined:`;
+                embed.title = `${userGlobalName}, you have already joined:`;
                 embed.description = `\`MMR ${findUser[0].mmr}\` - ${primaryEmoji}${secondaryEmoji ? secondaryEmoji : ''}`;
             } else {
                 let mmr;
@@ -93,7 +94,7 @@ export default {
                         break;
                 }
                 if (mmr) {
-                    await playersql.createPlayer(userUsername, mmr, primaryRole, secondaryRole);
+                    await playersql.createPlayer(userID, mmr, primaryRole, secondaryRole);
                 }
             }
             interaction.reply({ embeds: [embed]});

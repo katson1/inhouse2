@@ -17,7 +17,7 @@ export default {
     async execute(interaction) {
         const guild = interaction.guild;
         const channelName = "lobby";
-        var channel = null;
+        let channel = null;
         for (const [chave, canal] of guild.channels.cache.entries()) {
             if (canal.type === 2 && canal.name.toLowerCase().includes(channelName.toLowerCase())) {
                 channel = canal;
@@ -29,22 +29,26 @@ export default {
             return;
         }
 
-        const members = Array.from(channel.members.values()).map(member => member.user.username);
+        const members = Array.from(channel.members.values()).map(member => ({
+            id: member.user.id,
+            globalName: member.user.globalName || member.user.username
+        }));
+        
         if (members.length < 2) {
             await interaction.reply({ content: `Não há jogadores suficientes no canal do Lobby. \`Min: 2\`` });
             return;
         }
 
         const caps = sortCaps(members);
-        let cap1 = await playersql.getPlayerByusername(caps[0]);
-        let cap2 = await playersql.getPlayerByusername(caps[1]);
+        const cap1 = await playersql.getPlayerByusername(caps[0].id);
+        const cap2 = await playersql.getPlayerByusername(caps[1].id);
 
         if (!cap1[0]) {
-            await interaction.reply({ content:  `Erro: ${caps[0]}, foi selecionado como capitão, mas não está inscrito na inhouse. Use \`/captain\` novamente.` });
+            await interaction.reply({ content:  `Erro: ${caps[0].globalName}, foi selecionado como capitão, mas não está inscrito na inhouse. Use \`/captain\` novamente.` });
             return;
         } 
         if (!cap2[0]) {
-            await interaction.reply({ content: `Erro: ${caps[1]}, foi selecionado como capitão, mas não está inscrito na inhouse. Use \`/captain\` novamente.` });
+            await interaction.reply({ content: `Erro: ${caps[1].globalName}, foi selecionado como capitão, mas não está inscrito na inhouse. Use \`/captain\` novamente.` });
             return;
         }
 
@@ -80,12 +84,12 @@ export default {
         captainsEmbed.title = 'Captains for next lobby:';
         captainsEmbed.fields.push(
             {
-                name: `\`${fp[0].mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} ${fp[0].username} (first pick)`,
+                name: `\`${fp[0].mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} ${caps[0].globalName} (first pick)`,
                 value: '',
                 inline: false,
             },
             {
-                name: `\`${other[0].mmr}\` ${primaryEmoji_other}${secondaryEmoji_other} ${other[0].username}`,
+                name: `\`${other[0].mmr}\` ${primaryEmoji_other}${secondaryEmoji_other} ${caps[1].globalName}`,
                 value: '',
                 inline: false,
             }

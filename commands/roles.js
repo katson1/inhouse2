@@ -43,47 +43,48 @@ export default {
         
             const embed = getEmbed();
             const userWhoInteract = interaction.guild.members.cache.get(interaction.user.id);
-            const userUsername = userWhoInteract.user.username;
+            const userID = userWhoInteract.user.id;
+            const userGlobalName = userWhoInteract.user.globalName;
         
-            const findUser = await playersql.getPlayerByusername(userUsername);
+            const findUser = await playersql.getPlayerByusername(userID);
             if (findUser.length > 0) {
                 let userPrimaryRole = findUser[0].primary_role;
                 let userSecondaryRole = findUser[0].secondary_role;
                 
                 if (primaryRole || secondaryRole) {
                     if ((primaryRole && secondaryRole) && (primaryRole != secondaryRole)) {
-                        await playersql.updatePlayerPrimaryRole(primaryRole, userUsername);
-                        await playersql.updatePlayerSecondaryRole(secondaryRole, userUsername);
+                        await playersql.updatePlayerPrimaryRole(primaryRole, userID);
+                        await playersql.updatePlayerSecondaryRole(secondaryRole, userID);
                     }
                     else if ((primaryRole && !secondaryRole) || (primaryRole == secondaryRole)) {
-                        await playersql.updatePlayerPrimaryRole(primaryRole, userUsername);
-                        await playersql.updatePlayerSecondaryRole(null, userUsername);
+                        await playersql.updatePlayerPrimaryRole(primaryRole, userID);
+                        await playersql.updatePlayerSecondaryRole(null, userID);
                     } 
                     else if (secondaryRole && !primaryRole) {
                         if (secondaryRole == userPrimaryRole) {
-                            await playersql.updatePlayerPrimaryRole(userSecondaryRole, userUsername);
-                            await playersql.updatePlayerSecondaryRole(secondaryRole, userUsername);
+                            await playersql.updatePlayerPrimaryRole(userSecondaryRole, userID);
+                            await playersql.updatePlayerSecondaryRole(secondaryRole, userID);
                         } else {
-                            await playersql.updatePlayerSecondaryRole(secondaryRole, userUsername);
+                            await playersql.updatePlayerSecondaryRole(secondaryRole, userID);
                         }
                     }    
 
-                    const userUpdated = await playersql.getPlayerByusername(userUsername);
+                    const userUpdated = await playersql.getPlayerByusername(userID);
                     const primaryEmoji = emojis[userUpdated[0].primary_role];
                     const secondaryEmoji = userUpdated[0].secondary_role ? emojis[userUpdated[0].secondary_role] : '';
             
-                    embed.title = `${userUsername},`;
+                    embed.title = `${userGlobalName},`;
                     embed.description = `\`Roles updated:\` ${primaryEmoji}${secondaryEmoji}`;
                 } else {
-                    const user = await playersql.getPlayerByusername(userUsername);
+                    const user = await playersql.getPlayerByusername(userID);
                     const primaryEmoji = emojis[user[0].primary_role];
                     const secondaryEmoji = user[0].secondary_role ? emojis[user[0].secondary_role] : '';
 
-                    embed.title = `${userUsername},`;
+                    embed.title = `${userGlobalName},`;
                     embed.description = `\`Current roles:\` ${primaryEmoji}${secondaryEmoji}`;
                 }
             } else {
-                embed.title = `${userUsername}, you haven't joined yet, use \`/join\`!`;
+                embed.title = `${userGlobalName}, you haven't joined yet, use \`/join\`!`;
             }
             interaction.reply({ embeds: [embed], ephemeral: true} );
         }

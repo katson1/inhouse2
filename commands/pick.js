@@ -24,11 +24,12 @@ export default {
         const guild = interaction.guild;
         const channelName = "lobby";
         var channel = null;
-        const user = interaction.user.username;
-        const player = interaction.options.getUser('player').username;
+        const user = interaction.user.id;
+        const playerUser = interaction.options.getUser('player');
+        const player = playerUser.username;
+        const playerID = playerUser.id;
         const result = await playersql.getPlayerByusername(player);
 
-        var channel = null;
         for (const [chave, canal] of guild.channels.cache.entries()) {
             if (canal.type === 2 && canal.name.toLowerCase().includes(channelName.toLowerCase())) {
                 channel = canal;
@@ -42,7 +43,10 @@ export default {
 
         const pickEmbed = getEmbed();
 
-        const members = Array.from(channel.members.values()).map(member => member.user.username);
+        const members = Array.from(channel.members.values()).map(member => ({
+            username: member.user.username,
+            globalName: member.user.globalName || member.user.username
+        }));
 
         const teamOne = await team1.getTeam1();
         const teamTwo = await team2.getTeam2();
@@ -65,9 +69,10 @@ export default {
 
         let message = '';
 
-        if (members.includes(player)) {
+        const member = members.find(m => m.username === player);
+        if (member) {
             if (playerAlreadyPickedTeam1 || playerAlreadyPickedTeam2) {
-                await interaction.reply(`${player} has already been picked`);
+                await interaction.reply(`${member.globalName} has already been picked`);
                 return;
             } else {
                 if (teamOne.length > teamTwo.length) {
@@ -75,7 +80,7 @@ export default {
                         await interaction.reply({ content: `Isn't your time to pick!`, ephemeral: true });
                         return;
                     }
-                    await team2.insertPlayerOnTeam2(player);
+                    await team2.insertPlayerOnTeam2(playerID);
 
                     const updatedTeam2 = await team2.getTeam2(); 
                     if (updatedTeam2.length == 5) {
@@ -86,34 +91,30 @@ export default {
                         await interaction.reply({ content: `Isn't your time to pick!`, ephemeral: true });
                         return;
                     }
-                    await team1.insertPlayerOnTeam1(player)
+                    await team1.insertPlayerOnTeam1(playerID);
                 }
 
                 if (!teamReady) {
-                    pickEmbed.title = `${user} picked: ${player}`;
-                    message = `${user} picked: ${player}`;
+                    pickEmbed.title = `<@${user}> picked: ${member.globalName}`;
+                    message = `<@${user}> picked: ${member.globalName}`;
                 } else {
-                    message = `${user} picked: ${player}`;
+                    message = `<@${user}> picked: ${member.globalName}`;
                     pickEmbed.title = "Teams ready!";
                     const updatedTeam1 = await team1.getTeam1WithPlayers();
                     const updatedTeam2 = await team2.getTeam2WithPlayers();
-
                     const team1MMR = await team1.getTeam1MMR();
                     const team2MMR = await team2.getTeam2MMR();
 
                     pickEmbed.fields.push(
-                        { name: 'Team 1', value: updatedTeam1.map(jogador => jogador.player).join('\n'), inline: true },
+                        { name: `Team 1 \u200B - \u200B (\`${team1MMR.mmr}\`)`, value: updatedTeam1.map(jogador => `<@${jogador.player}>`).join('\n'), inline: true },
                         { name: '\u200B', value: '\u200B', inline: true },
-                        { name: 'Team 2', value: updatedTeam2.map(jogador => jogador.player).join('\n'), inline: true },
-                        { name: '', value: `**mmr: ** ${team1MMR.mmr}`, inline: true },
-                        { name: '', value: `**mmr: ** ${team2MMR.mmr}`, inline: true }
+                        { name: `Team 2 \u200B - \u200B (\`${team2MMR.mmr}\`)`, value: updatedTeam2.map(jogador => `<@${jogador.player}>`).join('\n'), inline: true },
                     );
-
                 }
             }
         } else {
-            pickEmbed.title = `${player} isn't on the lobby channel`;
-            message = `${player} isn't on the lobby channel`;
+            pickEmbed.title = `<@${playerID}> isn't on the lobby channel`;
+            message = `<@${playerID}> isn't on the lobby channel`;
         }
 
         if (!teamReady) {
@@ -122,5 +123,18 @@ export default {
             await interaction.reply(message);
             await interaction.followUp({ embeds: [pickEmbed] });
         }
+    }
+};
+
+function calculateWinRate(player) {
+    if (player.games === 0) {
+        return "0%";
+    }
+    
+    const winRate = (player.win / player.games) * 100;
+    if (winRate % 1 === 0) {
+        return winRate + '%';
+    } else {
+        return winRate.toFixed(2) + '%';
     }
 }

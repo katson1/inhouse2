@@ -25,13 +25,12 @@ export default {
             achievementsEmbed.title = '🎯  Achievements';
             achievementsEmbed.description = 'We are working on it, soon we will also have achievements in the inhouse bot!';
             if (player) {
-                const username = player.username;
-                achievementsEmbed.title = `🎯  ${username} achievements`;
+                const globalName = player.globalName;
+                achievementsEmbed.title = `🎯  ${globalName} achievements`;
                 console.log(player);
             } else {
                 
             }
-
-            interaction.reply({ embeds: [achievementsEmbed] } );
+             interaction.reply({ embeds: [achievementsEmbed] } );
         }
 }
