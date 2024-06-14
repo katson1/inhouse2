@@ -76,6 +76,17 @@ Developed by @katson (on Discord)`;
                 inline: false,
             },
             {
+                name: `**/achievements**`,
+                value: `List the achievements, or shows achievements of a player.`,
+                inline: true,
+            },
+            {
+                name: ``,
+                value: `**option**:
+- \`player\``,
+                inline: true,
+            },
+            {
                 name: `**/myrank**`,
                 value: `Shows your leaderboard position based on MMR.`,
                 inline: false,
