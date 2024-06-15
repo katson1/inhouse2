@@ -92,6 +92,16 @@ You earn `15 MMR` points per win.
 </details>
 
 <details>
+  <summary> /achievements </summary>
+    
+  - List the achievements, or shows achievements of a player.
+  
+    * options:
+        - `player` - select a player to show it achievements. (optional)
+        
+</details>
+
+<details>
   <summary> /roles </summary>
   
   - Display your current roles, or allows you to update your roles by selecting new options:
