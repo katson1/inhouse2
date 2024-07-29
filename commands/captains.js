@@ -33,7 +33,7 @@ export default {
             id: member.user.id,
             globalName: member.user.globalName || member.user.username
         }));
-        
+
         if (members.length < 2) {
             await interaction.reply({ content: `Não há jogadores suficientes no canal do Lobby. \`Min: 2\`` });
             return;
@@ -65,31 +65,31 @@ export default {
 
         let fp, other;
         if (cap1[0].mmr > cap2[0].mmr) {
-            fp = cap2;
-            other = cap1;
+            fp = cap2[0];
+            other = cap1[0];
         } else {
-            fp = cap1;
-            other = cap2;
+            fp = cap1[0];
+            other = cap2[0];
         }
-        await team1.insertPlayerOnTeam1(fp[0].username);
-        await team2.insertPlayerOnTeam2(other[0].username);
+        await team1.insertPlayerOnTeam1(fp.username);
+        await team2.insertPlayerOnTeam2(other.username);
         
-        const primaryEmoji_fp = emojis[fp[0].primary_role];
-        const secondaryEmoji_fp = fp[0].secondary_role ? emojis[fp[0].secondary_role] : '';
+        const primaryEmoji_fp = emojis[fp.primary_role];
+        const secondaryEmoji_fp = fp.secondary_role ? emojis[fp.secondary_role] : '';
                 
-        const primaryEmoji_other = emojis[other[0].primary_role];
-        const secondaryEmoji_other = other[0].secondary_role ? emojis[other[0].secondary_role] : '';
+        const primaryEmoji_other = emojis[other.primary_role];
+        const secondaryEmoji_other = other.secondary_role ? emojis[other.secondary_role] : '';
 
         const captainsEmbed = getEmbed();
         captainsEmbed.title = 'Captains for next lobby:';
         captainsEmbed.fields.push(
             {
-                name: `\`${fp[0].mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} ${caps[0].globalName} (first pick)`,
+                name: `\`${fp.mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} ${caps[0].globalName} (first pick)`,
                 value: '',
                 inline: false,
             },
             {
-                name: `\`${other[0].mmr}\` ${primaryEmoji_other}${secondaryEmoji_other} ${caps[1].globalName}`,
+                name: `\`${other.mmr}\` ${primaryEmoji_other}${secondaryEmoji_other} ${caps[1].globalName}`,
                 value: '',
                 inline: false,
             }
