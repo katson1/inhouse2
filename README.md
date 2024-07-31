@@ -126,7 +126,7 @@ You earn `15 MMR` points per win.
 <details>
   <summary> /teams </summary>
   
-  - Show current teams!
+  - Show current teams.
 </details>
 
 ## 📦 How to install and invite the bot to your server:
