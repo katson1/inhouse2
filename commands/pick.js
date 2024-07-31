@@ -19,7 +19,7 @@ export default {
         const team1 = new Team1('mydb.sqlite');
         const team2 = new Team2('mydb.sqlite');
 
-        var teamReady;
+        var teamReady = false;
 
         const guild = interaction.guild;
         const channelName = "lobby";
@@ -51,19 +51,20 @@ export default {
         const teamOne = await team1.getTeam1();
         const teamTwo = await team2.getTeam2();
 
-        const playerAlreadyPickedTeam1 = teamOne.some(jogador => jogador.player === player);
-        const playerAlreadyPickedTeam2 = teamTwo.some(jogador => jogador.player === player);
+        // Correção: Verificar se o jogador está em qualquer time utilizando playerID
+        const playerAlreadyPickedTeam1 = teamOne.some(jogador => jogador.player === playerID);
+        const playerAlreadyPickedTeam2 = teamTwo.some(jogador => jogador.player === playerID);
 
         const team1Cap = await team1.getTeam1Cap();
         const team2Cap = await team2.getTeam2Cap();
 
-        if (user != team1Cap.player && user != team2Cap.player) {
-            await interaction.reply(`You are not a captain!`);
+        if (user !== team1Cap.player && user !== team2Cap.player) {
+            await interaction.reply({ content: `You are not a captain!`, ephemeral: true });
             return;
         }
 
-        if (teamTwo.length == 5) {
-            await interaction.reply(`Game already start!`);
+        if (teamTwo.length === 5) {
+            await interaction.reply({ content: `Game already started!`, ephemeral: true });
             return;
         }
 
@@ -72,22 +73,22 @@ export default {
         const member = members.find(m => m.username === player);
         if (member) {
             if (playerAlreadyPickedTeam1 || playerAlreadyPickedTeam2) {
-                await interaction.reply(`${member.globalName} has already been picked`);
+                await interaction.reply({ content: `${member.globalName} has already been picked`, ephemeral: true });
                 return;
             } else {
                 if (teamOne.length > teamTwo.length) {
-                    if (user != team2Cap.player) {
+                    if (user !== team2Cap.player) {
                         await interaction.reply({ content: `Isn't your time to pick!`, ephemeral: true });
                         return;
                     }
                     await team2.insertPlayerOnTeam2(playerID);
 
                     const updatedTeam2 = await team2.getTeam2(); 
-                    if (updatedTeam2.length == 5) {
+                    if (updatedTeam2.length === 5) {
                         teamReady = true;
                     }
                 } else {
-                    if (user != team1Cap.player) {
+                    if (user !== team1Cap.player) {
                         await interaction.reply({ content: `Isn't your time to pick!`, ephemeral: true });
                         return;
                     }
@@ -118,9 +119,9 @@ export default {
         }
 
         if (!teamReady) {
-            await interaction.reply(message);
+            await interaction.reply({ content: message });
         } else {
-            await interaction.reply(message);
+            await interaction.reply({ content: message });
             await interaction.followUp({ embeds: [pickEmbed] });
         }
     }
@@ -130,11 +131,7 @@ function calculateWinRate(player) {
     if (player.games === 0) {
         return "0%";
     }
-    
+
     const winRate = (player.win / player.games) * 100;
-    if (winRate % 1 === 0) {
-        return winRate + '%';
-    } else {
-        return winRate.toFixed(2) + '%';
-    }
+    return winRate.toFixed(2) + '%';
 }
