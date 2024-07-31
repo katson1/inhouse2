@@ -123,6 +123,12 @@ You earn `15 MMR` points per win.
   - Choose a random map to vote on and play!
 </details>
 
+<details>
+  <summary> /teams </summary>
+  
+  - Show current teams!
+</details>
+
 ## 📦 How to install and invite the bot to your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
