@@ -5,7 +5,6 @@ export function createTablePlayer() {
         if (err) {
           console.error(err.message);
         }
-        //console.log('Connected to the mydb.sqlite database.');
     });
 
     db.run(`
@@ -21,7 +20,7 @@ export function createTablePlayer() {
         if(err) {
             console.error(err.message);
         } else {
-            //console.log("Table 'player' created or already exists.");
+            console.log("Table 'player' created or already exists.");
         }
     });
 
@@ -29,7 +28,6 @@ export function createTablePlayer() {
         if (err) {
           console.error(err.message);
         }
-        //console.log('Database connection closed.');
     });
 }
 
@@ -38,7 +36,6 @@ export function createTableTeam1() {
         if (err) {
           console.error(err.message);
         }
-        //console.log('Connected to the mydb.sqlite database.');
     });
 
     db.run(`
@@ -48,6 +45,7 @@ export function createTableTeam1() {
         if(err) {
             console.error(err.message);
         } else {
+            console.log("Table 'team1' created or already exists.");
         }
     });
 
@@ -63,7 +61,6 @@ export function createTableTeam2() {
         if (err) {
           console.error(err.message);
         }
-        //console.log('Connected to the mydb.sqlite database.');
     });
 
     db.run(`
@@ -73,6 +70,7 @@ export function createTableTeam2() {
         if(err) {
             console.error(err.message);
         } else {
+            console.log("Table 'team2' created or already exists.");
         }
     });
 
@@ -88,7 +86,6 @@ export function createTableAchievements() {
         if (err) {
           console.error(err.message);
         }
-        //console.log('Connected to the mydb.sqlite database.');
     });
 
     db.run(`
@@ -105,6 +102,7 @@ export function createTableAchievements() {
         if(err) {
             console.error(err.message);
         } else {
+            console.log("Table 'achievements' created or already exists.");
         }
     });
 
