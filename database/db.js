@@ -19,8 +19,6 @@ export function createTablePlayer() {
     )`, [], err => {
         if(err) {
             console.error(err.message);
-        } else {
-            console.log("Table 'player' created or already exists.");
         }
     });
 
@@ -44,8 +42,6 @@ export function createTableTeam1() {
     )`, [], err => {
         if(err) {
             console.error(err.message);
-        } else {
-            console.log("Table 'team1' created or already exists.");
         }
     });
 
@@ -69,8 +65,6 @@ export function createTableTeam2() {
     )`, [], err => {
         if(err) {
             console.error(err.message);
-        } else {
-            console.log("Table 'team2' created or already exists.");
         }
     });
 
@@ -101,8 +95,6 @@ export function createTableAchievements() {
     )`, [], err => {
         if(err) {
             console.error(err.message);
-        } else {
-            console.log("Table 'achievements' created or already exists.");
         }
     });
 
