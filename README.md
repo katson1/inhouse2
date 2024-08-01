@@ -155,7 +155,7 @@ CLIENT_ID=0123456789876543210
 
 Now, on the **Bot** tab, click on "Reset Token" to generate a new `Token`. 
 Copy the `token` to the .env file:
-> Remember, it's crucial not to share this token with anyone else.
+> Remember, it's crucial **not to share this token** with anyone else.
 
 The `.env` file should be like this example:
   ```.env
