@@ -13,7 +13,7 @@ export default {
 
     async execute(interaction) {
 
-        const user = interaction.user.username;
+        const user = interaction.user.id;
 
         const team1Cap = await team1.getTeam1Cap();
         const team2Cap = await team2.getTeam2Cap();
