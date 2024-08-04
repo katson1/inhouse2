@@ -51,6 +51,10 @@ export default {
             return;
         }
 
+        listEmbed.footer = {
+            text: `Total: ${filteredMembers.length}`
+        }
+
         for (const member of filteredMembers) {
             const findUser = await playerModel.getPlayerByusername(member.id);
             if (findUser.length > 0) {
