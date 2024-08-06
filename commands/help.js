@@ -77,7 +77,7 @@ Developed by @katson (on Discord)`;
             },
             {
                 name: `**/achievements**`,
-                value: `List the achievements, or shows achievements of a player.`,
+                value: `List the achievements, or shows achievements of a player. (not working yet)`,
                 inline: true,
             },
             {
