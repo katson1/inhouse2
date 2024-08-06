@@ -18,12 +18,12 @@ export default {
             let contentReply;
             
             let isSpec = await specsql.searchSpec(userID);
-            
+
             if (!isSpec) {
-                contentReply = `You were add as spec.`
+                contentReply = `You have been added as a spectator.`
                 await specsql.addAsSpec(userID);
             } else {
-                contentReply = `You were removed as spec.`
+                contentReply = `You have been removed as a spectator.`
                 await specsql.removeAsSpec(userID);
             }
 
