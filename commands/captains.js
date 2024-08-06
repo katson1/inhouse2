@@ -116,7 +116,7 @@ export default {
         const pickInprogress = await team1.getTeam1();
         if (pickInprogress.length > 1) {
             const captainsEmbed = getEmbed();
-            captainsEmbed.title = 'One team has already picked a player, use `/clear`';
+            captainsEmbed.title = 'One team has already picked a player, use `/clear` or `/win` (if a game just ended)';
             await interaction.reply({ embeds: [captainsEmbed] });
             return;
         }
