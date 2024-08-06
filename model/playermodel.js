@@ -42,9 +42,11 @@ class Player {
         secondary_role
       FROM 
         player 
+      WHERE 
+        games > 0
       ORDER BY 
         mmr DESC 
-      LIMIT 20
+      LIMIT 20;
     `;
     const rows = await this.query(query);
     return rows;
