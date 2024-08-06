@@ -52,6 +52,25 @@ class Player {
     return rows;
   }
 
+  async getAllPlayerByTopMMR() {
+    const query = `
+      SELECT 
+        username, 
+        mmr, 
+        win, 
+        lose, 
+        games, 
+        primary_role, 
+        secondary_role
+      FROM 
+        player 
+      ORDER BY 
+        mmr DESC;
+    `;
+    const rows = await this.query(query);
+    return rows;
+  }
+
   async getPlayerByBotMMR() {
     const rows = await this.query('SELECT * FROM player ORDER BY mmr LIMIT 10');
     return rows;
