@@ -3,6 +3,7 @@ import Player from '../model/playermodel.js';
 import { getEmbed } from "../utils/embed.js";
 import Team1 from '../model/team1model.js';
 import Team2 from '../model/team2model.js';
+import Spec from '../model/specmodel.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -14,10 +15,10 @@ export default {
                 .setRequired(true)),
 
     async execute(interaction) {
-
         const playersql = new Player('mydb.sqlite');
         const team1 = new Team1('mydb.sqlite');
         const team2 = new Team2('mydb.sqlite');
+        const specsql = new Spec('mydb.sqlite');
 
         var teamReady = false;
 
@@ -28,6 +29,13 @@ export default {
         const playerUser = interaction.options.getUser('player');
         const player = playerUser.username;
         const playerID = playerUser.id;
+
+        const isSpec = await specsql.searchSpec(playerID);
+        if (isSpec) {
+            await interaction.reply({ content: `${playerUser.username} is marked as a spectator and cannot be picked.`, ephemeral: true });
+            return;
+        }
+
         const result = await playersql.getPlayerByusername(player);
 
         for (const [chave, canal] of guild.channels.cache.entries()) {
@@ -37,7 +45,7 @@ export default {
         }
 
         if (!channel) {
-            await interaction.reply({ content: "Canal com nome 'lobby' não encontrado! Crie um canal de voz com nome que contenha o nome **lobby** como por exemplo: \`lobby\`, \`Mix・Lobby\`, \`INHOUSE LOBBY\`!" });
+            await interaction.reply({ content: "Canal com nome 'lobby' não encontrado! Crie um canal de voz com nome que contenha o nome **lobby** como por exemplo: `lobby`, `Mix・Lobby`, `INHOUSE LOBBY`!" });
             return;
         }
 
@@ -51,7 +59,6 @@ export default {
         const teamOne = await team1.getTeam1();
         const teamTwo = await team2.getTeam2();
 
-        // Correção: Verificar se o jogador está em qualquer time utilizando playerID
         const playerAlreadyPickedTeam1 = teamOne.some(jogador => jogador.player === playerID);
         const playerAlreadyPickedTeam2 = teamTwo.some(jogador => jogador.player === playerID);
 
@@ -73,7 +80,7 @@ export default {
         const member = members.find(m => m.username === player);
         if (member) {
             if (playerAlreadyPickedTeam1 || playerAlreadyPickedTeam2) {
-                await interaction.reply({ content: `${member.globalName} has already been picked`, ephemeral: true });
+                await interaction.reply({ content: `${member.globalName} has already been picked.`, ephemeral: true });
                 return;
             } else {
                 if (teamOne.length > teamTwo.length) {
