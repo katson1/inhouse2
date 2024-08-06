@@ -3,11 +3,13 @@ import { getEmbed } from "../utils/embed.js";
 import Player from '../model/playermodel.js';
 import Team1 from '../model/team1model.js';
 import Team2 from '../model/team2model.js';
+import Spec from '../model/specmodel.js';
 import emojis from '../utils/emojis.js';
 
 const team1 = new Team1('mydb.sqlite');
 const team2 = new Team2('mydb.sqlite');
 const playerModel = new Player('mydb.sqlite');
+const specsql = new Spec('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()
@@ -25,7 +27,7 @@ export default {
         }
 
         if (!channel) {
-            await interaction.reply({ content: "Canal com nome 'lobby' não encontrado! Crie um canal de voz com nome que contenha o nome **lobby** como por exemplo: \`lobby\`, \`Mix・Lobby\`, \`INHOUSE LOBBY\`!" });
+            await interaction.reply({ content: "Canal com nome 'lobby' não encontrado! Crie um canal de voz com nome que contenha o nome **lobby** como por exemplo: `lobby`, `Mix・Lobby`, `INHOUSE LOBBY`!" });
             return;
         }
 
@@ -56,16 +58,19 @@ export default {
         }
 
         for (const member of filteredMembers) {
-            const findUser = await playerModel.getPlayerByusername(member.id);
-            if (findUser.length > 0) {
-                const primaryEmoji = emojis[findUser[0].primary_role];
-                const secondaryEmoji = findUser[0].secondary_role ? emojis[findUser[0].secondary_role] : '';
-                
-                listEmbed.fields.push({
-                    name: `\`${findUser[0].mmr}\`${primaryEmoji}${secondaryEmoji} ${member.globalName}`,
-                    value: ``,
-                    inline: false
-                });
+            const isSpec = await specsql.searchSpec(member.id);
+            if (!isSpec) {
+                const findUser = await playerModel.getPlayerByusername(member.id);
+                if (findUser.length > 0) {
+                    const primaryEmoji = emojis[findUser[0].primary_role];
+                    const secondaryEmoji = findUser[0].secondary_role ? emojis[findUser[0].secondary_role] : '';
+                    
+                    listEmbed.fields.push({
+                        name: `\`${findUser[0].mmr}\`${primaryEmoji}${secondaryEmoji} ${member.globalName}`,
+                        value: ``,
+                        inline: false
+                    });
+                }
             }
         }
         await interaction.reply({ embeds: [listEmbed] });

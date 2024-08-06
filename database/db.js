@@ -104,3 +104,26 @@ export function createTableAchievements() {
         }
     });
 }
+
+export function createTableSpec() {
+    const db = new sqlite3.Database('mydb.sqlite', (err) => {
+        if (err) {
+          console.error(err.message);
+        }
+    });
+
+    db.run(`
+    CREATE TABLE IF NOT EXISTS spec (
+        username TEXT PRIMARY KEY
+    )`, [], err => {
+        if(err) {
+            console.error(err.message);
+        }
+    });
+
+    db.close((err) => {
+        if (err) {
+          console.error(err.message);
+        }
+    });
+}
