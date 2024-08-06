@@ -3,11 +3,13 @@ import { getEmbed } from "../utils/embed.js";
 import Player from '../model/playermodel.js';
 import Team1 from '../model/team1model.js';
 import Team2 from '../model/team2model.js';
+import Spec from '../model/specmodel.js'; // Importar o modelo de especs
 import emojis from '../utils/emojis.js';
 
 const playersql = new Player('mydb.sqlite');
 const team1 = new Team1('mydb.sqlite');
 const team2 = new Team2('mydb.sqlite');
+const specsql = new Spec('mydb.sqlite'); // Criar instância do modelo de especs
 
 export default {
     data: new SlashCommandBuilder()
@@ -51,6 +53,19 @@ export default {
             const cap1InChannel = members.find(member => member.id === manualCaptain1.id);
             const cap2InChannel = members.find(member => member.id === manualCaptain2.id);
 
+            const isSpec1 = await specsql.searchSpec(manualCaptain1.id);
+            const isSpec2 = await specsql.searchSpec(manualCaptain2.id);
+
+            if (isSpec1) {
+                await interaction.reply({ content: `${manualCaptain1.username} é um espectador e não pode ser selecionado como capitão.`, ephemeral: true });
+                return;
+            }
+
+            if (isSpec2) {
+                await interaction.reply({ content: `${manualCaptain2.username} é um espectador e não pode ser selecionado como capitão.`, ephemeral: true });
+                return;
+            }
+
             if (!cap1InChannel) {
                 await interaction.reply({ content: `Erro: ${manualCaptain1.username} não está no canal de voz.` });
                 return;
@@ -70,7 +85,20 @@ export default {
                 return;
             }
 
-            caps = sortCaps(members);
+            const availableMembers = [];
+            for (const member of members) {
+                const isSpec = await specsql.searchSpec(member.id);
+                if (!isSpec) {
+                    availableMembers.push(member);
+                }
+            }
+
+            if (availableMembers.length < 2) {
+                await interaction.reply({ content: `Não há jogadores suficientes disponíveis para serem selecionados como capitães.` });
+                return;
+            }
+
+            caps = sortCaps(availableMembers);
         }
 
         const cap1 = await playersql.getPlayerByusername(caps[0].id);
