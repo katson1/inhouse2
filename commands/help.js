@@ -104,6 +104,16 @@ Developed by @katson (on Discord)`;
                 inline: true,
             },
             {
+                name: `**/teams**`,
+                value: `Show current teams.`,
+                inline: false,
+            },
+            {
+                name: `**/spec**`,
+                value: `Set or unset yourself as a spectator.`,
+                inline: false,
+            },
+            {
                 name: `**/help**`,
                 value: `Display the description of the commands.`,
                 inline: false,
