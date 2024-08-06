@@ -131,6 +131,12 @@ You earn `15 MMR` points per win.
   - Show current teams.
 </details>
 
+<details>
+  <summary> /spec </summary>
+  
+  - Set or unset yourself as a spectator.
+</details>
+
 ## 📦 How to install and invite the bot to your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
