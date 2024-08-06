@@ -33,7 +33,7 @@ export default {
                 return;
             }
 
-            const allPlayers = await playerModel.getPlayerByTopMMR();
+            const allPlayers = await playerModel.getAllPlayerByTopMMR();
             const filteredPlayers = [];
 
             for (const player of allPlayers) {
