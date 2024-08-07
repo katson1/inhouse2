@@ -103,13 +103,13 @@ export default {
             for (const player of teamTwo) {
                 let percentageDifference = ((player.mmr - team1MMR) / player.mmr) * 100;
                 let winMMR = 15;
-                if (percentageDifference < -10) {
+                if (percentageDifference < -6) {
                     winMMR = 16;
                 }
-                if (percentageDifference < -15) {
+                if (percentageDifference < -10) {
                     winMMR = 17;
                 }
-                if (percentageDifference > 15) {
+                if (percentageDifference > 10) {
                     winMMR = 14;
                 }
                 if (player.mmr > 2300) {
@@ -123,13 +123,13 @@ export default {
             for (const player of teamOne) {
                 let percentageDifference = ((player.mmr - team2MMR) / player.mmr) * 100;
                 let loseMMR = -15;
-                if (percentageDifference < -10) {
+                if (percentageDifference < -6) {
                     loseMMR = -16;
                 }
-                if (percentageDifference < -15) {
+                if (percentageDifference < -10) {
                     loseMMR = -17;
                 }
-                if (percentageDifference > 15) {
+                if (percentageDifference > 10) {
                     loseMMR = -14;
                 }
                 if (percentageDifference > 20) {
