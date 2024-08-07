@@ -53,9 +53,7 @@ export default {
             return;
         }
 
-        listEmbed.footer = {
-            text: `Total: ${filteredMembers.length}`
-        }
+        let total = filteredMembers.length;
 
         for (const member of filteredMembers) {
             const isSpec = await specsql.searchSpec(member.id);
@@ -72,7 +70,15 @@ export default {
                     });
                 }
             }
+            else {
+                total-=1;
+            }
         }
+
+        listEmbed.footer = {
+            text: `Total: ${total}`
+        }
+
         await interaction.reply({ embeds: [listEmbed] });
     }
 };

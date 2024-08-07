@@ -34,7 +34,7 @@ class Team2 {
   }
 
   async redraftTeam2() {
-    await this.run('DELETE FROM team1 where rowid <> 2');
+    await this.run('DELETE FROM team2 where rowid <> 2');
   }
 
   query(sql, params) {
