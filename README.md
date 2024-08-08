@@ -134,7 +134,7 @@ You earn `15 MMR` points per win.
 <details>
   <summary> /spec </summary>
   
-  - Set or unset yourself as a spectator.
+  - Set or unset yourself as a spectator. A spectator will not be listed when someone uses the /list command, cannot be selected as captain, and cannot be picked.
 </details>
 
 ## 📦 How to install and invite the bot to your server:
