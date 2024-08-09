@@ -148,13 +148,13 @@ export default {
 
         captainsEmbed.fields.push(
             {
-                name: `${primaryEmoji_fp}${secondaryEmoji_fp} ${firstPick.globalName} (first pick)`,
-                value: `MMR: \`${firstPick.mmr}\``,
+                name: ``,
+                value: `\`${firstPick.mmr}\` ${primaryEmoji_fp}${secondaryEmoji_fp} <@${firstPick.username}> (first pick)`,
                 inline: false,
             },
             {
-                name: `${primaryEmoji_other}${secondaryEmoji_other} ${other.globalName}`,
-                value: `MMR: \`${other.mmr}\``,
+                name: ``,
+                value: `\`${other.mmr}\` ${primaryEmoji_other}${secondaryEmoji_other} <@${other.username}>`,
                 inline: false,
             }
         );
