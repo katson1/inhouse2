@@ -51,9 +51,11 @@ export default {
 
         const pickEmbed = getEmbed();
 
+        console.log(channel.members.values());
+
         const members = Array.from(channel.members.values()).map(member => ({
             username: member.user.username,
-            globalName: member.user.globalName || member.user.username
+            nickname: member.nickname || member.user.globalName || member.user.username,
         }));
 
         const teamOne = await team1.getTeam1();
@@ -80,7 +82,7 @@ export default {
         const member = members.find(m => m.username === player);
         if (member) {
             if (playerAlreadyPickedTeam1 || playerAlreadyPickedTeam2) {
-                await interaction.reply({ content: `${member.globalName} has already been picked.`, ephemeral: true });
+                await interaction.reply({ content: `${member.nickname} has already been picked.`, ephemeral: true });
                 return;
             } else {
                 if (teamOne.length > teamTwo.length) {
@@ -103,10 +105,10 @@ export default {
                 }
 
                 if (!teamReady) {
-                    pickEmbed.title = `<@${user}> picked: ${member.globalName}`;
-                    message = `<@${user}> picked: ${member.globalName}`;
+                    pickEmbed.title = `<@${user}> picked: ${member.nickname}`;
+                    message = `<@${user}> picked: ${member.nickname}`;
                 } else {
-                    message = `<@${user}> picked: ${member.globalName}`;
+                    message = `<@${user}> picked: ${member.nickname}`;
                     pickEmbed.title = "Teams ready!";
                     const updatedTeam1 = await team1.getTeam1WithPlayers();
                     const updatedTeam2 = await team2.getTeam2WithPlayers();

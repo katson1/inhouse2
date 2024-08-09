@@ -40,7 +40,7 @@ export default {
 
         const members = Array.from(channel.members.values()).map(member => ({
             id: member.user.id,
-            globalName: member.user.globalName || member.user.username
+            nickname : member.nickname || member.user.globalName || member.user.username
         }));
         const players = [...teamOne, ...teamTwo].map(team => team.player);
         const filteredMembers = members.filter(member => !players.includes(member.id));
@@ -64,7 +64,7 @@ export default {
                     const secondaryEmoji = findUser[0].secondary_role ? emojis[findUser[0].secondary_role] : '';
                     
                     listEmbed.fields.push({
-                        name: `\`${findUser[0].mmr}\`${primaryEmoji}${secondaryEmoji} ${member.globalName}`,
+                        name: `\`${findUser[0].mmr}\`${primaryEmoji}${secondaryEmoji} ${member.nickname}`,
                         value: ``,
                         inline: false
                     });
