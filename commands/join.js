@@ -58,7 +58,7 @@ export default {
               
             const embed = getEmbed();
             const userToAdd = interaction.guild.members.cache.get(interaction.user.id);
-            const userGlobalName = userToAdd.user.globalName;
+            const userGlobalName = userToAdd.nickname || userToAdd.user.globalName || userToAdd.user.usename;
             const userID = userToAdd.user.id;
             embed.title = `${userGlobalName} just joined inhouse!`;
         
@@ -72,7 +72,7 @@ export default {
                 const primaryEmoji = emojis[findUser[0].primary_role];
                 const secondaryEmoji = emojis[findUser[0].secondary_role];
                 
-                embed.title = `${userGlobalName}, you have already joined:`;
+                embed.title = `${userGlobalName}, you have already joined. You only need to join once.`;
                 embed.description = `\`MMR ${findUser[0].mmr}\` - ${primaryEmoji}${secondaryEmoji ? secondaryEmoji : ''}`;
             } else {
                 let mmr;
