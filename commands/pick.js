@@ -51,8 +51,6 @@ export default {
 
         const pickEmbed = getEmbed();
 
-        console.log(channel.members.values());
-
         const members = Array.from(channel.members.values()).map(member => ({
             username: member.user.username,
             nickname: member.nickname || member.user.globalName || member.user.username,
