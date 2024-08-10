@@ -68,6 +68,8 @@ export default {
                         value: ``,
                         inline: false
                     });
+                } else {
+                    total-=1;
                 }
             }
             else {
