@@ -23,7 +23,7 @@ export default {
             position += 1;
             try {
                 const member = await guild.members.fetch(player.username);
-                const globalName = member.user.globalName || member.user.username;
+                const globalName = member.nickname || member.user.globalName || member.user.username;
                 const primaryEmoji = emojis[player.primary_role];
                 const secondaryEmoji = player.secondary_role ? emojis[player.secondary_role] : '';
                 const winRate = calculateWinRate(player);
