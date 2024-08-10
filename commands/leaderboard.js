@@ -23,13 +23,13 @@ export default {
             position += 1;
             try {
                 const member = await guild.members.fetch(player.username);
-                const globalName = member.nickname || member.user.globalName || member.user.username;
+                const nickname = member.nickname || member.user.globalName || member.user.username;
                 const primaryEmoji = emojis[player.primary_role];
                 const secondaryEmoji = player.secondary_role ? emojis[player.secondary_role] : '';
                 const winRate = calculateWinRate(player);
 
                 leaderboardEmbed.fields.push({
-                    name: `${position} - \`${player.mmr}\` ${globalName}\u200b \n${primaryEmoji} ${secondaryEmoji}`,
+                    name: `${position} - \`${player.mmr}\` ${nickname}\u200b \n${primaryEmoji} ${secondaryEmoji}`,
                     value: `${player.win} **W** - ${player.lose} **L**\n**Win**%:   ${winRate}\n**Games:** ${player.games}\n \u200b`,
                     inline: true
                 });
