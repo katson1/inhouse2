@@ -1,7 +1,7 @@
 # inhouse2
 An in-house bot that choose 2 random captains, and allows them to pick players for [Heroes Of The Storm](https://heroesofthestorm.blizzard.com/pt-br/) custom games.
 
-It operates with a lobby voice channel. Captains are randomly selected from the lobby channel and then they can pick players from the same channel.
+It operates with a lobby voice channel. Captains can be selected automatically or manually from the lobby channel so they can pick players from the same channel.
 
 Make sure to read about the commands before using them. You can also use the `/help` bot command to view all available commands and learn how to use them.
 
