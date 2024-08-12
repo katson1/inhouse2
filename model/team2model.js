@@ -37,6 +37,15 @@ class Team2 {
     await this.run('DELETE FROM team2 where rowid <> 1');
   }
 
+  async isOnTeam2(username) {
+    const rows = await this.query('SELECT * FROM team2 WHERE player = ?', [username]);
+    return rows[0];
+  }
+
+  async changePlayer(newPlayer, OldPlayer) {
+    await this.run('UPDATE team2 SET player = ? WHERE player = ?', [newPlayer, OldPlayer]);
+  }
+
   query(sql, params) {
     return new Promise((resolve, reject) => {
       this.db.all(sql, params, (error, rows) => {
