@@ -17,6 +17,13 @@ export default {
         const team1MMR = await team1.getTeam1MMR();
         const team2MMR = await team2.getTeam2MMR();
 
+        if (!updatedTeam1.lenght || !updatedTeam2.lenght) {
+            const emptyEmbed = getEmbed();
+            emptyEmbed.title = 'The teams are empty!';
+    
+            await interaction.reply({ embeds: [emptyEmbed] });
+        }
+
         const formattedTeam1MMR = formatMMR(team1MMR.mmr);
         const formattedTeam2MMR = formatMMR(team2MMR.mmr);
 
