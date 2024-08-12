@@ -113,10 +113,13 @@ export default {
                     const team1MMR = await team1.getTeam1MMR();
                     const team2MMR = await team2.getTeam2MMR();
 
+                    const formattedTeam1MMR = formatMMR(team1MMR.mmr);
+                    const formattedTeam2MMR = formatMMR(team2MMR.mmr);
+
                     pickEmbed.fields.push(
-                        { name: `Team 1 \u200B - \u200B (\`${team1MMR.mmr}\`)`, value: updatedTeam1.map(jogador => `<@${jogador.player}>`).join('\n'), inline: true },
+                        { name: `Team 1 \u200B - \u200B (\`${formattedTeam1MMR}\`)`, value: updatedTeam1.map(jogador => `<@${jogador.player}>`).join('\n'), inline: true },
                         { name: '\u200B', value: '\u200B', inline: true },
-                        { name: `Team 2 \u200B - \u200B (\`${team2MMR.mmr}\`)`, value: updatedTeam2.map(jogador => `<@${jogador.player}>`).join('\n'), inline: true },
+                        { name: `Team 2 \u200B - \u200B (\`${formattedTeam2MMR}\`)`, value: updatedTeam2.map(jogador => `<@${jogador.player}>`).join('\n'), inline: true },
                     );
                 }
             }
@@ -141,4 +144,9 @@ function calculateWinRate(player) {
 
     const winRate = (player.win / player.games) * 100;
     return winRate.toFixed(2) + '%';
+}
+
+
+function formatMMR(mmr) {
+    return Number.isInteger(mmr) ? mmr.toString() : mmr.toFixed(2);
 }
