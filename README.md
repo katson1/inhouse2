@@ -137,6 +137,12 @@ You earn `15 MMR` points per win.
   - Set or unset yourself as a spectator. A spectator will not be listed when someone uses the /list command, cannot be selected as captain, and cannot be picked.
 </details>
 
+<details>
+  <summary> /swap </summary>
+  
+  - Allows a captain to swap one player for another, either from one team to another or for a player who isn't on a team.
+</details>
+
 ## 📦 How to install and invite the bot to your server:
 You need to have [node.js](https://nodejs.org/en) installed.
 
