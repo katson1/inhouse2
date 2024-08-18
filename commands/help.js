@@ -115,8 +115,20 @@ Developed by @katson (on Discord)`;
             },
             {
                 name: `**/help**`,
-                value: `Display the description of the commands.`,
+                value: `Display this description of the commands.`,
                 inline: false,
+            },
+            {
+                name: `**/swap**`,
+                value: `Allows a captain to swap one player for another, either from one team to another or for a player who isn't on a team.
+                `,
+                inline: true,
+            },
+            {
+                name: ``,
+                value: `**options**:
+- \`player_1\`, \`player_2\``,
+                inline: true,
             }
         );
         await interaction.reply({ embeds: [helpEmbed] });
