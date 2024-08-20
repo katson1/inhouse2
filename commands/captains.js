@@ -3,13 +3,13 @@ import { getEmbed } from "../utils/embed.js";
 import Player from '../model/playermodel.js';
 import Team1 from '../model/team1model.js';
 import Team2 from '../model/team2model.js';
-import Spec from '../model/specmodel.js'; // Importar o modelo de especs
+import Spec from '../model/specmodel.js';
 import emojis from '../utils/emojis.js';
 
 const playersql = new Player('mydb.sqlite');
 const team1 = new Team1('mydb.sqlite');
 const team2 = new Team2('mydb.sqlite');
-const specsql = new Spec('mydb.sqlite'); // Criar instância do modelo de especs
+const specsql = new Spec('mydb.sqlite');
 
 export default {
     data: new SlashCommandBuilder()
