@@ -140,7 +140,7 @@ You earn `15 MMR` points per win.
 <details>
   <summary> /swap </summary>
   
-  - Allows a captain to swap one player for another, either from one team to another or for a player who isn't on a team.
+  - A captain can swap one player for another, either from one team to another or for a player who isn't on a team.
 </details>
 
 ## 📦 How to install and invite the bot to your server:
