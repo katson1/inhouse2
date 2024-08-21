@@ -8,6 +8,8 @@ Make sure to read about the commands before using them. You can also use the `/h
 Clip of the bot being used on a twitch live (in Portuguese-BR):
 https://clips.twitch.tv/DignifiedGeniusGaragePermaSmug-qUMPGc24I527joQd
 
+> this project is based on a simpler bot I had created before: [inhousebot](https://github.com/katson1/inhousebot)
+
 ## ⌨️ Commands:
 
 <details>
