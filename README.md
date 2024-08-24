@@ -1,7 +1,7 @@
 # inhouse2
 A [Discord](https://discord.com/) bot designed to manage custom games in [Heroes Of The Storm](https://heroesofthestorm.blizzard.com/pt-br/)
 
-It operates with a lobby voice channel. Captains can be selected automatically or manually from the lobby channel so they can pick players from the same channel.
+It operates with a lobby voice channel. Captains can be selected automatically or manually from the lobby channel and they can pick players from the same channel.
 
 Make sure to read about the commands before using them. You can also use the `/help` bot command to view all available commands and learn how to use them.
 
