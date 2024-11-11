@@ -1,5 +1,5 @@
 # inhouse2
-A [Discord](https://discord.com/) bot designed to manage custom games in [Heroes Of The Storm](https://heroesofthestorm.blizzard.com/pt-br/)
+A [Discord](https://discord.com/) bot designed to manage custom games in [Heroes Of The Storm](https://heroesofthestorm.blizzard.com/pt-br/).
 
 It operates with a lobby voice channel. Captains can be selected automatically or manually from the lobby channel and they can pick players from the same channel.
 
