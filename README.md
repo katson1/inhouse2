@@ -191,8 +191,10 @@ The bot is now up and running! Head over to your server and enjoy it!
 
 Notice: The bot may take up to 5 minutes to register the commands.
 
-> ⚠️ This bot cannot operate on multiple servers simultaneously within the same project because the database only works for one server. If you use the bot on more than one server, the data will be messed up.
- 
+> ⚠️ This bot cannot operate on multiple servers simultaneously within the same project because the database only works for one discord server. If you use the bot on more than one discord server, the data will be messed up.
+
+> Feel free to contact me if you have any questions or need assistance with the setup!
+
 ## Author:
 <div align="left">
   <div>
