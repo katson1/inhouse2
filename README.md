@@ -5,7 +5,7 @@ It operates with a lobby voice channel. Captains can be selected automatically o
 
 Make sure to read about the commands before using them. You can also use the `/help` bot command to view all available commands and learn how to use them.
 
- [click here to watch a clip of the bot being used on a twitch live (in Portuguese-BR).](https://clips.twitch.tv/DignifiedGeniusGaragePermaSmug-qUMPGc24I527joQd)
+ [click here to watch a clip of the bot being used on a twitch live (in Portuguese-BR)](https://clips.twitch.tv/DignifiedGeniusGaragePermaSmug-qUMPGc24I527joQd)
 
 > this project is based on a simpler bot I had created before: [inhousebot](https://github.com/katson1/inhousebot)
 
